@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://market.ibluefrog.com/login/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="http://market.ibluefrog.com/login/img/favicon.png">
+
+    <title>创景数据平台</title>
+
+    <!-- Bootstrap core CSS -->
+    {load href="/static/admin/css/bootstrap.min.css" /}
+    {load href="/static/admin/css/bootstrap-reset.css" /}
+    <!--external css-->
+    {load href="/static/admin/css/font-awesome.css" /}
+    <!-- Custom styles for this template -->
+    {load href="/static/admin/css/style.css" /}
+    {load href="/static/admin/css/style-responsive.css" /}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/html5shiv.js"></script>
+    <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body class="login-body">
+
+    <div class="container">
+
+      <form class="form-signin" method="post" onsubmit="return login();">
+        <h2 class="form-signin-heading">创景数据平台登录</h2>
+        <div class="login-wrap">
+            <input type="text" class="form-control" id="username" placeholder="User ID" autofocus="">
+            <input type="password" class="form-control" id="pwd" placeholder="Password">
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> 记住账号
+                <!-- <span class="pull-right">
+                    <a data-toggle="modal" href="http://market.ibluefrog.com/login/#myModal"> 忘记密码?</a>
+                </span> -->
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">登录</button>
+            
+
+        </div>
+
+         
+
+      </form>
+
+    </div>
+    <!-- js placed at the end of the document so the pages load faster -->
+    {load href="/static/admin/js/jquery.js" /}
+    {load href="/static/admin/js/bootstrap.min.js" /}
+    <script type="text/javascript">
+function login(){
+    
+	var username = $("#username").val();
+	var pwd = $("#pwd").val();
+	var url = '/index/login';
+	$.post(url,{'username':username,'pwd':pwd},function(rs){
+		if(rs.error==0){
+			window.location.href = "/index/total_day";
+			return false;
+		}
+		alert(rs);
+		$("#pwd").focus();
+	})
+	return false;
+}
+
+$("#username").focus();
+</script>
+
+  
+</body></html>

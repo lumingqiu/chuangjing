@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)file:///C:/Users/Administrator/Desktop/%E5%88%9B%E6%99%AF%E5%B9%B3%E5%8F%B0.html -->
+<html lang="en" style="overflow: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/img/favicon.png">
+
+    <title>创景数据平台</title>
+    {load href="/static/admin/css/jquery-ui.css" /}
+    {load href="/static/admin/css/bootstrap.min.css" /}
+    {load href="/static/admin/css/bootstrap-reset.css" /}
+    {load href="/static/admin/css/font-awesome.css" /}
+    {load href="/static/admin/css/jquery.easy-pie-chart.css" /}
+    {load href="/static/admin/css/owl.carousel.css" /}
+    {load href="/static/admin/css/style.css" /}
+    {load href="/static/admin/css/style-responsive.css" /}
+    {load href="/static/admin/css/magic.css" /}
+    {load href="/static/admin/css/jquery.jspanel.css" /}
+    {load href="/static/admin/css/WdatePicker.css" /}
+    {load href="/static/admin/css/adm.css" /}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/html5shiv.js"></script>
+      <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/respond.min.js"></script>
+    <![endif]-->
+    
+    {load href="/static/admin/js/uaest.js" /}
+    {load href="/static/admin/js/jquery-1.8.3.min.js" /}
+    {load href="/static/admin/js/jquery-ui.min.js" /}
+    {load href="/static/admin/js/bootstrap.min.js" /}
+    {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
+    {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
+    {load href="/static/admin/js/WdatePicker.js" /}
+    {load href="/static/admin/js/basic.js" /}
+    {load href="/static/admin/js/jquery.jspanel.css" /}
+  <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style></head>
+
+  <body>
+
+  <section id="container">
+      <!--header start-->
+      <header class="header white-bg">
+            <div class="sidebar-toggle-box">
+                <div data-original-title="菜单导航" data-placement="right" class="icon-reorder tooltips"></div>
+            </div>
+            <!--logo start-->
+            <a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/index.html" class="logo">创景平台</a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">
+                            <i class="icon-tasks"></i>
+                            <span class="badge bg-success">0</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">你有0个未处理任务</p>
+                            </li>
+                            <li style="display: none;">
+                                <a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">
+                                    <div class="task-info">
+                                        <div class="desc">任务名称</div>
+                                        <div class="percent">0%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                            <span class="sr-only">0% 完成 </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                         
+                            <li class="external">
+                                <a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">查看全部任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- settings end -->
+                   
+                    <!-- inbox dropdown end -->
+                    <!-- notification dropdown start-->
+                    <li id="header_notification_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">
+
+                            <i class="icon-bell-alt"></i>
+                            <span class="badge bg-warning">0</span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-yellow"></div>
+                            <li>
+                                <p class="yellow">你有0条未读消息</p>
+                            </li>
+                            <li style="display: none;">
+                                <a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">
+                                    <span class="label label-danger"><i class="icon-bolt"></i></span>
+                                    ...
+                                    <span class="small italic">..</span>
+                                </a>
+                            </li>
+                           
+                            <li>
+                                <a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">查看全部消息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- notification dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-nav ">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    <li>
+                        <input type="text" class="form-control search" placeholder="Search">
+                    </li>
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#">
+                            <img alt="" src="./创景平台_files/avatar1_small.jpg">
+                            <span class="username">管理员</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li><a href="file:///E:/wechat/WeChat%20Files/haolmq/FileStorage/File/2019-09/%E9%A1%B5%E9%9D%A2%E4%BB%A3%E7%A0%81(1).html#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/user?do=set&amp;id=1&#39;,&#39;设置个人信息&#39;,800,500)"><i class=" icon-suitcase"></i>修改密码</a></li>
+                            <li><a href="http://market.ibluefrog.com/login/out"><i class="icon-key"></i> 安全退出</a></li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+      
+      
+
+<!--header end-->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar" class="nav-collapse " tabindex="5000" style="overflow: hidden; outline: none;">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+                 
+
+                  <li class="sub-menu dcjq-parent-li">
+                      <a href="javascript:;" class="active dcjq-parent">
+                          <i class="icon-bar-chart"></i>
+                          <span>数据报表</span>
+                      <span class="dcjq-icon"></span><span class="dcjq-icon"></span></a>
+                      <ul class="sub" style="display: block;">
+                          <li class="active"><a href="total_day">日报表</a></li>
+                                                     <li><a href="app_list">日详情</a></li>
+                                                </ul>
+                  </li>
+                                
+                  
+                  <li>
+                      <a href="app_upload">
+                          <i class="icon-book"></i>
+                          <span>应用管理</span>
+                      </a>
+                  </li>
+                  
+                   <li>
+                      <a href="user">
+                          <i class="icon-dashboard"></i>
+                          <span>用户管理</span>
+                      </a>
+                  </li>
+                                    
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      <section id="main-content" style="padding-bottom: 20px;">
+  <section class="wrapper"><!-- page start-->
+<section class="panel">
+    	<header class="panel-heading" style="padding: 10px 15px 10px 15px;height: 54px;line-height: 34px;"> 
+	
+	日报表  
+	<div class="btn-group pull-right">
+	     
+		 
+	</div>
+	</header>
+	
+	<div class="panel-body">
+	<form class="form-inline" role="form">
+		<div class="form-group">
+			<input type="text" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" id="stime" name="stime" class="form-control" placeholder="开始时间" value="">
+		</div>
+		<div class="form-group">
+			<input type="text" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" id="stime" name="etime" class="form-control" placeholder="结束时间" value="">
+		</div>
+				<div class="form-group">
+		<select name="uid" id="uid" class="form-control" onchange="selapp()">
+		      <option value="">全部渠道</option>
+                            <option value="4">爱瓦力</option>
+                            <option value="5">艾数科技</option>
+                            <option value="6">梦创</option>
+                            <option value="7">新宸睿</option>
+                            <option value="8">合智动力</option>
+                            <option value="9">畅思</option>
+                            <option value="11">王健</option>
+                            <option value="12">测试渠道</option>
+                            <option value="13">测试渠道</option>
+                            <option value="14">测试渠道</option>
+                            <option value="15">梦扩科技</option>
+                            <option value="16">金牛</option>
+                            <option value="17">图币网络</option>
+                            <option value="18">觅途</option>
+                            <option value="19">pole</option>
+                            <option value="20">扬京互通</option>
+                            <option value="21">卓因网络</option>
+                            <option value="22">纵驰信息</option>
+                            <option value="23">北京益趣科技</option>
+                            <option value="24">舒卷网络</option>
+                            <option value="25">奇创</option>
+                            <option value="27">掌握时代</option>
+                            <option value="28">江苏领凯</option>
+                            <option value="29">快读</option>
+                            <option value="30">林寒</option>
+                            <option value="31">上海瑞狮</option>
+                            <option value="32">动信通</option>
+                            <option value="33">灵悦互动</option>
+                            <option value="34">槟煌网络</option>
+                            <option value="35">点升</option>
+                            <option value="36">浩瀚精典</option>
+                            <option value="37">优启</option>
+                            <option value="38">点效</option>
+                            <option value="39">飞扬无限</option>
+                            <option value="40">耀顺</option>
+                            <option value="41">互娱天下</option>
+                            <option value="42">测试渠道梦文</option>
+                            <option value="43">四川耀顺</option>
+                            <option value="44">奇幻互动</option>
+                            <option value="45">智投</option>
+                            <option value="46">京杨</option>
+                            <option value="47">桔跃</option>
+                            <option value="48">比格</option>
+                            <option value="49">盈鑫科技</option>
+                            <option value="51">易企推</option>
+                            <option value="52">华宙互动</option>
+                            <option value="53">迪乐</option>
+                            <option value="54">天津瀚海</option>
+                            <option value="55">乐飞思美</option>
+                            <option value="56">巨鳄</option>
+                            <option value="57">亿春秋</option>
+                            <option value="58">守望者</option>
+                            <option value="59">泛悦</option>
+                            <option value="60">卓宏</option>
+                            <option value="61">信运星</option>
+                            <option value="62">仁玺</option>
+                            <option value="63">罗维</option>
+                            <option value="64">魔品</option>
+                        </select>
+        </div>
+                
+        <div class="form-group">
+		  <select name="appid" id="appid" class="form-control">
+                 
+          </select>
+        </div>
+                <div class="form-group">
+        <input type="text" id="des" name="des" value="" placeholder="广告主名称关键词" class="form-control">
+        </div>
+        
+        <div class="form-group">
+        <input type="text" id="appname" name="appname" value="" placeholder="应用名称关键词" class="form-control">
+        </div>
+                
+        <script>
+		function selapp(){
+			var uid = $("#uid").val();
+			var url = 'total_day?do=getapp&appid=&chuid='+uid;
+			$.get(url,function(rs){
+				$("#appid").html(rs);
+			})
+			
+		}
+		selapp();
+        </script>
+		<button type="submit" class="btn btn-info">查询</button>
+	</form>
+	</div>
+		<style>
+	#editable-sample{}
+	</style>
+	<div class="panel-body" style="padding-top: 0px;">
+		<div class="adv-table editable-table ">
+			<div class="clearfix">
+				
+			</div>
+			<div class="space15"></div>
+			<table class="table table-striped table-hover table-bordered" id="editable-sample">
+				<thead>
+					<tr>
+					    						<th>广告主</th>
+												<th>日期</th>
+						
+						<th>渠道</th>
+						<th>app</th>
+						<th>安装数</th>
+						<th>渠道激活</th>
+						<th>渠道激活率</th>
+												<th>影藏激活</th>
+						<th>总计激活</th>
+						<th>激活率</th>
+											</tr>
+				</thead>
+				<tbody>
+				    					<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-18</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>258</td>
+						<td>15</td>
+						<td>5.81%</td>
+												<td>0</td>
+						<td>15</td>
+						<td>5.81%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-17</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>311</td>
+						<td>16</td>
+						<td>5.14%</td>
+												<td>1</td>
+						<td>17</td>
+						<td>5.47%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-16</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>496</td>
+						<td>37</td>
+						<td>7.46%</td>
+												<td>3</td>
+						<td>40</td>
+						<td>8.06%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-15</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>441</td>
+						<td>28</td>
+						<td>6.35%</td>
+												<td>1</td>
+						<td>29</td>
+						<td>6.58%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-14</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>549</td>
+						<td>27</td>
+						<td>4.92%</td>
+												<td>1</td>
+						<td>28</td>
+						<td>5.10%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-13</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>252</td>
+						<td>9</td>
+						<td>3.57%</td>
+												<td>2</td>
+						<td>11</td>
+						<td>4.37%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-12</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>11</td>
+						<td>2</td>
+						<td>18.18%</td>
+												<td>0</td>
+						<td>2</td>
+						<td>18.18%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-11</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>13</td>
+						<td>0</td>
+						<td>0.00%</td>
+												<td>0</td>
+						<td>0</td>
+						<td>0.00%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-10</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>274</td>
+						<td>15</td>
+						<td>5.47%</td>
+												<td>2</td>
+						<td>17</td>
+						<td>6.20%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-09</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>10225</td>
+						<td>56</td>
+						<td>0.55%</td>
+												<td>7</td>
+						<td>63</td>
+						<td>0.62%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-08</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>12431</td>
+						<td>76</td>
+						<td>0.61%</td>
+												<td>8</td>
+						<td>84</td>
+						<td>0.68%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-07</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>6932</td>
+						<td>80</td>
+						<td>1.15%</td>
+												<td>8</td>
+						<td>88</td>
+						<td>1.27%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-06</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>11847</td>
+						<td>95</td>
+						<td>0.80%</td>
+												<td>10</td>
+						<td>105</td>
+						<td>0.89%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-05</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>12648</td>
+						<td>95</td>
+						<td>0.75%</td>
+												<td>10</td>
+						<td>105</td>
+						<td>0.83%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-04</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>10629</td>
+						<td>79</td>
+						<td>0.74%</td>
+												<td>0</td>
+						<td>79</td>
+						<td>0.74%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-03</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>10563</td>
+						<td>100</td>
+						<td>0.95%</td>
+												<td>1</td>
+						<td>101</td>
+						<td>0.96%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-02</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>10681</td>
+						<td>70</td>
+						<td>0.66%</td>
+												<td>3</td>
+						<td>73</td>
+						<td>0.68%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-03-01</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>3569</td>
+						<td>17</td>
+						<td>0.48%</td>
+												<td>1</td>
+						<td>18</td>
+						<td>0.50%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-28</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>15002</td>
+						<td>160</td>
+						<td>1.07%</td>
+												<td>2</td>
+						<td>162</td>
+						<td>1.08%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-27</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>23143</td>
+						<td>188</td>
+						<td>0.81%</td>
+												<td>3</td>
+						<td>191</td>
+						<td>0.83%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-26</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>10901</td>
+						<td>117</td>
+						<td>1.07%</td>
+												<td>3</td>
+						<td>120</td>
+						<td>1.10%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-25</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>331</td>
+						<td>12</td>
+						<td>3.63%</td>
+												<td>1</td>
+						<td>13</td>
+						<td>3.93%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-24</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>305</td>
+						<td>15</td>
+						<td>4.92%</td>
+												<td>0</td>
+						<td>15</td>
+						<td>4.92%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-23</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>502</td>
+						<td>22</td>
+						<td>4.38%</td>
+												<td>1</td>
+						<td>23</td>
+						<td>4.58%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-22</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>778</td>
+						<td>28</td>
+						<td>3.60%</td>
+												<td>3</td>
+						<td>31</td>
+						<td>3.98%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-21</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>3782</td>
+						<td>19</td>
+						<td>0.50%</td>
+												<td>0</td>
+						<td>19</td>
+						<td>0.50%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-20</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>14572</td>
+						<td>353</td>
+						<td>2.42%</td>
+												<td>24</td>
+						<td>377</td>
+						<td>2.59%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-19</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>12365</td>
+						<td>366</td>
+						<td>2.96%</td>
+												<td>26</td>
+						<td>392</td>
+						<td>3.17%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-18</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>3041</td>
+						<td>13</td>
+						<td>0.43%</td>
+												<td>3</td>
+						<td>16</td>
+						<td>0.53%</td>
+											</tr>
+										<tr class="">
+					    						<td>
+						全部						</td>
+												<td>2019-02-17</td>
+						<td>
+						全部 </td>
+						<td>
+						全部						</td>
+						
+						<td>8469</td>
+						<td>30</td>
+						<td>0.35%</td>
+												<td>1</td>
+						<td>31</td>
+						<td>0.37%</td>
+											</tr>
+									</tbody>
+				<tbody><tr class="">
+					<td>汇总</td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td><td>&nbsp;</td>
+					<td>23715005</td>
+					<td>69355</td>
+					<td>0.29%</td>
+										<td>5144</td>
+					<td>74499</td>
+					<td>0.31%</td>
+									</tr>
+			</tbody></table>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="dataTables_info" id="editable-sample_info">总280条 每页30条 共10页</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="dataTables_paginate paging_bootstrap pagination">
+						<ul>
+						    <li class="disabled"><a href="javascript:;">首页</a></li>&nbsp;&nbsp;<li class="disabled"><a href="javascript:;">上一页</a></li>&nbsp;<li class="active disabled"><a href="javascript:;">1</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=2">2</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=3">3</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=4">4</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=5">5</a></li>&nbsp;&nbsp;<li class="next"><a href="file:///E:/adm/total_day?page=2">下一页</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=10">尾页</a></li>						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- page end-->
+
+
+
+            <!-- page end-->
+  </section>
+</section>
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    
+    {load href="/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
+    {load href="/static/admin/js/jquery.scrollTo.min.js" /}
+    {load href="/static/admin/js/jquery.nicescroll.js" /}
+    {load href="/static/admin/js/jquery.sparkline.js" /}
+    {load href="/static/admin/js/jquery.easy-pie-chart.js" /}
+    {load href="/static/admin/js/owl.carousel.js" /}
+    {load href="/static/admin/js/jquery.customSelect.min.js" /}
+    {load href="/static/admin/js/respond.min.js" /}
+	{load href="/static/admin/js/common-scripts.js" /}
+	<div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; cursor: default; position: fixed; top: 0px; left: 207px; height: 754px; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 3px; height: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; top: 751px; left: 0px; position: fixed; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 3px; width: 0px; border-radius: 10px; left: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 6px; height: 354px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 6px; width: 1600px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; cursor: default; position: fixed; top: 0px; left: 207px; height: 754px; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 3px; height: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; top: 751px; left: 0px; position: fixed; cursor: default; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 3px; width: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 6px; height: 354px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 6px; width: 1600px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div>
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo").owlCarousel({
+            navigation : true,
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem : true,
+		   autoPlay:true
+        });
+    });
+
+    //custom select box
+
+    $(function(){
+        $('select.styled').customSelect();
+    });
+    function pgreload(){
+  		window.location.reload();
+  	}
+function edit(href,title,width,height){
+        
+		if(!width){
+			width = $(window).width()/2;
+    	}
+    	if(!height){
+    		height = $(window).height()/2;
+        }
+        if(!title){
+        	title = '设置';
+        }
+	    $.jsPanel({
+	        theme: 'LightSeaGreen',
+	        headerTitle: '<span id="mdt">'+title+' '+href.toLowerCase()+'</span>',
+	        position: 'center-top 0 10',
+	        contentSize:  { width: width, height: height },
+	        content: '<iframe id="ifcon" src="'+href+'" style="width: 100%;height: 100%;margin: 0px;padding: 0px;border:none;"></iframe>',
+	        callback: function () {
+	            $('.jsPanel-ftr', this).css({flexFlow: 'row-reverse'});
+	        }
+	    });
+}
+    function del(id){
+    	if(confirm("确定吗?删除后不可恢复！")){
+        	$.get('total_day?do=del&id='+id,function(rs){
+        		alert(rs);
+        		window.location.reload();
+        	});
+    	}
+    	return false;
+    }
+  </script>
+
+  
+
+<div id="jsPanel-replacement-container"></div><div style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width:1px;height:1px" src="./创景平台_files/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div><div id="jsPanel-replacement-container"></div><div style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width:1px;height:1px" src="./创景平台_files/My97DatePicker(1).html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
