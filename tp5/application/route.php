@@ -23,3 +23,4 @@
 use think\Route;
 // 完整域名绑定到admin模块
 Route::domain('admin','admin');
+Route::domain('api','api');

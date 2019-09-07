@@ -7,6 +7,7 @@ CREATE TABLE `cj_user`
     `user_password` varchar(64) NOT NULL COMMENT '用户密码',
     `user_name` varchar(64) NOT NULL DEFAULT '' COMMENT '用名称',
 	`user_level` varchar(64) NOT NULL DEFAULT '' COMMENT '用户代理等级1管理员',
+	`parent_user_id` INT UNSIGNED NOT NULL DEFAULT '1'  COMMENT '用户上级账号id，对应cj_user表user_id',
 	`user_limit` varchar(64) NOT NULL DEFAULT '' COMMENT '账户登记权限,0超级管理员,1业务员,2渠道',
 	`user_state` tinyint(4) NOT NULL DEFAULT '0' COMMENT '用户状态，0表示正常,1表示冻结,2表示删除',
 	`create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -15,15 +16,15 @@ CREATE TABLE `cj_user`
 	UNIQUE INDEX idx_search(`user_account`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#用户关系表
-CREATE TABLE `cj_user_relation`
-(
-	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	`user_id` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '用户账号id，对应cj_user表user_id',
-	`parent_user_id` INT UNSIGNED NOT NULL DEFAULT '0'  COMMENT '用户上级账号id，对应cj_user表user_id',
-	PRIMARY KEY (`id`),
-	UNIQUE INDEX idx_search(`user_id`,`parent_user_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- #用户关系表
+-- CREATE TABLE `cj_user_relation`
+-- (
+-- 	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+-- 	`user_id` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '用户账号id，对应cj_user表user_id',
+-- 	`parent_user_id` INT UNSIGNED NOT NULL DEFAULT '0'  COMMENT '用户上级账号id，对应cj_user表user_id',
+-- 	PRIMARY KEY (`id`),
+-- 	UNIQUE INDEX idx_search(`user_id`)
+-- )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #广告应用信息表
 CREATE TABLE `cj_ad_app`
@@ -69,3 +70,5 @@ CREATE TABLE `cj_ad_click_log`
 
 #用户数据
 insert into cj_user (`user_id`,`user_account`,`user_password`,`user_name`,`user_level`,`user_limit`,`user_state`) values(1,'admin',md5(123456),'管理员','1','0','0');
+
+insert into cj_user_relation(`user_id`,`parent_user_id`) values(1,1);

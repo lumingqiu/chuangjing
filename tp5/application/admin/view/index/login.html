@@ -54,18 +54,21 @@
     <!-- js placed at the end of the document so the pages load faster -->
     {load href="/static/admin/js/jquery.js" /}
     {load href="/static/admin/js/bootstrap.min.js" /}
+    {load href="/static/admin/js/md5.js" /}
     <script type="text/javascript">
 function login(){
     
 	var username = $("#username").val();
 	var pwd = $("#pwd").val();
 	var url = '/index/login';
-	$.post(url,{'username':username,'pwd':pwd},function(rs){
+	$.post(url,{'username':username,'pwd':hex_md5(pwd)},function(rs){
+        console.log(rs);
 		if(rs.error==0){
 			window.location.href = "/index/total_day";
 			return false;
-		}
-		alert(rs);
+		}else{
+            alert(rs.message);
+        }
 		$("#pwd").focus();
 	})
 	return false;

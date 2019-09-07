@@ -11,6 +11,8 @@ class controller extends \think\Controller
     }
 
     public function getuserinfo(){
-
+        $this->userinfo = session('userinfo');
     }
+
+    
 }
