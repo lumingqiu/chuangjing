@@ -123,14 +123,14 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="app_upload#">
-                            <img alt="" src="./蓝蛙数据平台1_files/avatar1_small.jpg.下载">
+
                             <span class="username">管理员</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/user?do=set&amp;id=1&#39;,&#39;设置个人信息&#39;,800,500)"><i class=" icon-suitcase"></i>修改密码</a></li>
-                            <li><a href="http://market.ibluefrog.com/login/out"><i class="icon-key"></i> 安全退出</a></li>
+                            <li><a href="app_upload#myModal" onclick="edit('user?do=edit&user_id=1')"><i class=" icon-suitcase"></i>修改密码</a></li>
+                            <li><a href="loginout"><i class="icon-key"></i> 安全退出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -184,8 +184,9 @@
   <section class="wrapper"><script>
 function savePer(id){
 	var nper = $("#per_"+id).val();
-	$.post('http://market.ibluefrog.com/adm/app_upload',{'id':id,'per':nper},function(rs){
-		alert(rs);
+	$.post('app_info',{'app_id':id,'channel_activate':nper},function(rs){
+        alert(rs.message);
+        pgreload();
 	})
 }
 </script>
@@ -194,7 +195,7 @@ function savePer(id){
 	<header class="panel-heading" style="padding: 10px 15px 10px 15px;height: 54px;line-height: 34px;"> 应用管理  
 	<div class="btn-group pull-right">
 	    
-        <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&#39;)" data-toggle="modal" class="btn btn-xs btn-success" style="height: 34px;line-height: 34px;padding: 0px 12px;margin-bottom: 0; font-size: 14px;margin-right: 2px;">
+        <a href="app_upload#myModal" onclick="edit('app_info?do=set')" data-toggle="modal" class="btn btn-xs btn-success" style="height: 34px;line-height: 34px;padding: 0px 12px;margin-bottom: 0; font-size: 14px;margin-right: 2px;">
              添加 <i class="icon-plus"></i>
           </a>
 		<button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -210,10 +211,10 @@ function savePer(id){
 	<form class="form-inline" role="form">
 		 		
 		<div class="form-group">
-			<input type="text" name="name" class="form-control" placeholder="应用名称模糊查询" value="" style="width: 200px;">
-			<input type="text" name="chname" class="form-control" placeholder="渠道名称模糊查询" value="" style="width: 200px;">
-			<input type="text" name="des" class="form-control" placeholder="上游名称模糊查询" value="" style="width: 200px;">
-			<input type="text" name="id" class="form-control" placeholder="appid" value="" style="width: 200px;">
+			<input type="text" name="name" class="form-control" placeholder="应用名称模糊查询" value="{$Request.param.name}" style="width: 200px;">
+			<!-- <input type="text" name="chname" class="form-control" placeholder="渠道名称模糊查询" value="{$Request.param.chname}" style="width: 200px;"> -->
+			<input type="text" name="des" class="form-control" placeholder="上游名称模糊查询" value="{$Request.param.des}" style="width: 200px;">
+			<input type="text" name="id" class="form-control" placeholder="appid" value="{$Request.param.id}" style="width: 200px;">
 		</div>
 		<button type="submit" class="btn btn-info">查询</button>
 	</form>
@@ -239,679 +240,71 @@ function savePer(id){
                     </tr>
 				</thead>
 				<tbody>
+                        {volist name="applist" id="vo"}
 				    				    <tr>
 				        
-				        <td class="center">yeahmobi</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">大众点评(2189)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>大众点评<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2189&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2189" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2189)">
+                        <td class="center">{$vo.ad_name}</td>
+                        <td class="center">
+                        {switch name="$vo.ad_platform_id"}
+                            {case value="1"}iphone{/case}
+                            {case value="2"}android{/case}
+                            {default /}unknow
+                        {/switch}
+                    </td>
+                        <td class="center">
+                        {switch name="$vo.ad_state"}
+                            {case value="2"}删除{/case}
+                            {case value="1"}暂停{/case}
+                            {default /}正常
+                        {/switch}
+                    </td>
+                        <td class="center">{$vo.app_name}({$vo.app_id})</td>
+                        <td class="center">
+                            {switch name="$vo.ad_joint_type"}
+                            {case value="2"}302重定向{/case}
+                            {case value="1"}S2S{/case}
+                            {default /}unknow
+                        {/switch}
+                    </td>
+                        <td class="center">
+                        {volist name="userlist" id="vo1" }
+                        {if $vo1.user_id == $vo.add_channel_id }{$vo1.user_name}{/if}
+                         {/volist}
+                        </td>
+                     
+				        <td>{$vo.ad_name}<br>渠道链接：{$vo.ad_callback_url}</td>
+                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_{$vo.app_id}" value="{$vo.channel_activate}">% 
+                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer({$vo.app_id})">
                          </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2189&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
+                                                  <a href="app_upload#myModal" onclick="edit('app_info?do=edit&app_id={$vo.app_id}')" data-toggle="modal" class="btn btn-xs btn-success">
                              修改 <i class="icon-edit"></i>
                           </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2189&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
+                                                     <a href="app_upload#myModal" onclick="test('{$vo.app_id}')" data-toggle="modal" class="btn btn-xs btn-info">
                              测试 <i class="icon-code"></i>
                           </a>
                         
                         </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">掌握时代</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">qq阅读(2188)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">飞扬无限</td>
-				        
-				        <td>qq阅读<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2188&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2188" value="85">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2188)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2188&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2188&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">KK直播(2187)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">赢动</td>
-				        
-				        <td>KK直播<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2187&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2187" value="80">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2187)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2187&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2187&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">棉花糖直播</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">棉花糖直播(2186)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">大众联运</td>
-				        
-				        <td>棉花糖直播<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2186&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2186" value="95">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2186)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2186&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2186&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">百合官方</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">百合婚恋(2185)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>百合婚恋<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2185&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2185" value="90">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2185)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2185&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2185&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">绅凯</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">皇城霸主(2184)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>皇城霸主<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2184&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2184" value="90">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2184)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2184&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2184&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">济南哈普</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">龙族幻想(2183)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>龙族幻想<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2183&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2183" value="85">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2183)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2183&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2183&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">yeahmobile</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">小学包(2182)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>小学包<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2182&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2182" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2182)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2182&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2182&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">棉花糖直播</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">棉花糖直播(2181)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">点效</td>
-				        
-				        <td>棉花糖直播<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2181&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2181" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2181)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2181&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2181&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">UC浏览器(2180)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">点效</td>
-				        
-				        <td>UC浏览器<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2180&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2180" value="91">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2180)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2180&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2180&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">test</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">咸鱼(2179)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>咸鱼<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2179&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2179" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2179)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2179&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2179&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">魔邑城</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">京东金融(2178)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">桔跃</td>
-				        
-				        <td>京东金融<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2178&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2178" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2178)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2178&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2178&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">迪乐</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">更美(2177)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>更美<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2177&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2177" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2177)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2177&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2177&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">鱼越</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">奇葩战斗家(2176)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">乐飞思美</td>
-				        
-				        <td>奇葩战斗家<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2176&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2176" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2176)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2176&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2176&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">魔邑城</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">京东金融(2175)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">桔跃</td>
-				        
-				        <td>京东金融<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2175&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2175" value="92">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2175)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2175&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2175&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">鱼越</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">奇葩战斗家(2174)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">乐飞思美</td>
-				        
-				        <td>奇葩战斗家<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2174&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2174" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2174)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2174&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2174&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">棉花糖直播</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">棉花糖直播(2173)</td>
-				        <td class="center">302</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>棉花糖直播<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2173&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2173" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2173)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2173&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2173&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">极光</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">抖音8(2172)</td>
-				        <td class="center">302</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>抖音8<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2172&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2172" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2172)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2172&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2172&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">UC浏览器(2171)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>UC浏览器<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2171&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2171" value="91">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2171)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2171&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2171&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">UC浏览器(2170)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>UC浏览器<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2170&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2170" value="95">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2170)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2170&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2170&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">济南哈普</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">龙族幻想IOS(2169)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">吉欣</td>
-				        
-				        <td>龙族幻想IOS<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2169&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2169" value="90">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2169)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2169&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2169&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">大众点评(2168)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>大众点评<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2168&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2168" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2168)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2168&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2168&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">快手(2167)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>快手<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2167&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2167" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2167)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2167&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2167&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">大众联运</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">悦美(2166)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>悦美<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2166&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2166" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2166)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2166&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2166&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">摩比特</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">贪婪洞窟2(2165)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">耀虎科技</td>
-				        
-				        <td>贪婪洞窟2<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2165&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2165" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2165)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2165&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2165&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">摩比特</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">贪婪洞窟2(2164)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">广州天资</td>
-				        
-				        <td>贪婪洞窟2<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2164&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2164" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2164)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2164&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2164&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">众安-安卓测试</td>
-				        <td class="center">android</td>
-				        <td class="center">正常</td>
-				        <td class="center">众安(2163)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>众安<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2163&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2163" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2163)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2163&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2163&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">众安-ios测试</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">众安 - 广告对接(2162)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">测试渠道</td>
-				        
-				        <td>众安 - 广告对接<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2162&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2162" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2162)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2162&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2162&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">蓝蛙</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">58同城(2161)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">木桐一七</td>
-				        
-				        <td>58同城<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2161&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2161" value="99">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2161)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2161&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2161&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
-									    <tr>
-				        
-				        <td class="center">蓝蛙</td>
-				        <td class="center">iphone</td>
-				        <td class="center">正常</td>
-				        <td class="center">58同城(2160)</td>
-				        <td class="center">S2S</td>
-				        <td class="center">桔跃</td>
-				        
-				        <td>58同城<br>渠道链接：http://market.ibluefrog.com/api/install?appid=2160&amp;idfa={idfa}&amp;ip={ip}&amp;callback={callback}</td>
-                        <td class="center"><input style="width: 70px;text-align: center;border: solid 1px #eee;" type="tel" id="per_2160" value="90">% 
-                        <input value="保存" class="btn btn-danger btn-sm" type="button" onclick="savePer(2160)">
-                         </td><td>
-                                                  <a href="app_upload#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/app_upload?do=set&amp;id=2160&#39;)" data-toggle="modal" class="btn btn-xs btn-success">
-                             修改 <i class="icon-edit"></i>
-                          </a>
-                                                     <a href="app_upload#myModal" onclick="test(&#39;2160&#39;)" data-toggle="modal" class="btn btn-xs btn-info">
-                             测试 <i class="icon-code"></i>
-                          </a>
-                        
-                        </td>
-                    </tr>
+                        </tr>
+                        {/volist}
 									</tbody>
 			</table>
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="dataTables_info" id="editable-sample_info">总360条 每页30条 共12页</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="dataTables_paginate paging_bootstrap pagination">
-						<ul>
-						    <li class="disabled"><a href="javascript:;">首页</a></li>&nbsp;&nbsp;<li class="disabled"><a href="javascript:;">上一页</a></li>&nbsp;<li class="active disabled"><a href="javascript:;">1</a></li>&nbsp;<li><a href="app_upload?page=2">2</a></li>&nbsp;<li><a href="app_upload?page=3">3</a></li>&nbsp;<li><a href="app_upload?page=4">4</a></li>&nbsp;<li><a href="app_upload?page=5">5</a></li>&nbsp;&nbsp;<li class="next"><a href="app_upload?page=2">下一页</a></li>&nbsp;<li><a href="app_upload?page=12">尾页</a></li>						</ul>
-					</div>
-				</div>
-			</div>
+                    <div class="col-lg-6">
+                        <div class="dataTables_info" id="editable-sample_info">总{$pageinfo.page_count}条 每页{$pageinfo.page_size}条 共{$pageinfo.page_num}页</div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="dataTables_paginate paging_bootstrap pagination">
+                            <ul>
+                                <li class=""><a href="app_upload?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_upload?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
+                                {for start="1" end="$pageinfo.page_num+1"}
+                                    <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_upload?page='.$i}">{$i}</a></li>&nbsp;
+                                {/for}
+                                
+                                
+                                &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_upload?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="app_upload?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                        </div>
+                    </div>
+                </div>
 		</div>
 	</div>
 </section>

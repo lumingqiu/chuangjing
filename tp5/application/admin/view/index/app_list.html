@@ -23,8 +23,8 @@
     {load href="/static/admin/css/adm.css" /}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-      {load href="/static/admin/js/html5shiv.js" /}
-		{load href="/static/admin/js/respond.min.js" /}
+      <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/html5shiv.js"></script>
+      <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/respond.min.js"></script>
     <![endif]-->
     
     {load href="/static/admin/js/uaest.js" /}
@@ -125,14 +125,14 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="http://market.ibluefrog.com/market/adm/app_list#">
-                            <img alt="" src="./img/avatar1_small.jpg">
+                     
                             <span class="username">管理员</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="http://market.ibluefrog.com/market/adm/app_list#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/user?do=set&amp;id=1&#39;,&#39;设置个人信息&#39;,800,500)"><i class=" icon-suitcase"></i>修改密码</a></li>
-                            <li><a href="http://market.ibluefrog.com/login/out"><i class="icon-key"></i> 安全退出</a></li>
+                            <li><a href="app_list#myModal" onclick="edit('user?do=edit&user_id=1')"><i class=" icon-suitcase"></i>修改密码</a></li>
+                            <li><a href="loginout"><i class="icon-key"></i> 安全退出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -171,7 +171,7 @@
                   </li>
                   
                    <li>
-                      <a href="userlist">
+                      <a href="user">
                           <i class="icon-dashboard"></i>
                           <span>用户管理</span>
                       </a>

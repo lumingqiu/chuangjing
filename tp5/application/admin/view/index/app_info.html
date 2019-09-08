@@ -1,0 +1,250 @@
+<html lang="en" style="overflow: hidden;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>应用+联盟</title>
+    {load href="/static/admin/css/bootstrap.min.css" /}
+    {load href="/static/admin/css/bootstrap-reset.css" /}
+    {load href="/static/admin/css/font-awesome.css" /}
+    {load href="/static/admin/css/jquery.easy-pie-chart.css" /}
+    {load href="/static/admin/css/owl.carousel.css" /}
+    {load href="/static/admin/css/style.cs" /}
+    {load href="/static/admin/css/colorpicker.css"" /}
+    {load href="/static/admin/css/style-responsive.css" /}
+
+
+     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      {load href="/static/admin/js/html5shiv.js" /}
+		{load href="/static/admin/js/respond.min.js" /}
+    <![endif]-->
+    {load href="/static/admin/js/uaest.js" /}
+    {load href="/static/admin/js/jquery-1.8.3.min.js" /}
+    {load href="/static/admin/js/jquery-ui.min.js" /}
+    {load href="/static/admin/js/bootstrap.min.js" /}
+    {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
+    {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
+    {load href="/static/admin/js/WdatePicker.js" /}
+    {load href="/static/admin/js/basic.js" /}
+    {load href="/static/admin/js/jquery.jspanel.css" /}
+    {load href="/static/admin/js/jsAddressAdm.js" /}
+<style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
+<body style="margin: 0px; padding: 0px; background: rgb(255, 255, 255);">
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#applyForm').submit(function(){
+        $(this).ajaxSubmit({
+            beforeSubmit: function() {
+            	$(".btn").attr('disabled','disabled');
+            },
+            success: function(rs) {
+                alert(rs);
+                $(".btn").removeAttr("disabled");
+                if(rs.indexOf('成功')>0){
+                	window.opener.pgreload();
+                }
+                
+            },
+            error: function(rs) {
+            	alert('失败');
+            	$(".btn").removeAttr("disabled");
+            }
+        });
+	    return false;
+	});
+});
+ 
+</script>
+<style>.picinput{display: inline-block;width: 300px;}</style>
+<section class="panel">
+<div class="col-lg-12">
+  <section class="panel" >
+      <form role="form" id="applyForm" class="form-horizontal tasi-form" name="applyForm" action="app_info/do/add{$Request.get.do == 'edit'? '/app_id/'.$Request.get.app_id:''}" method="post" enctype="multipart/form-data">
+      <header class="panel-heading" style="height: 1px;border: none;padding: 0px;">&nbsp;</header>
+      {if $Request.get.do == 'edit'}<input type="hidden" name="app_id" value="{$Request.get.app_id}"/>{/if}
+     <div class="panel-body" style="     height: 100%; 
+     width: 102%;height: 100%;overflow-x: hidden;overflow-y: auto;padding-left:30px; " >
+     			<div class="form-group">
+                  <label class="col-sm-3 control-label">广告主名称</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="ad_name" value="{$appinfo.ad_name??''}">
+                  </div>
+              </div>
+                            <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">分配业务员</label>
+                  <div class="col-sm-9">
+                        <select class="form-control picinput" name="ad_salesman_id">
+                            <option value="">请选择</option>
+                            {volist name="userlist" id="vo" vo.user_limit='1'}
+                            {if $vo.user_limit=='1'}
+                            <option value="{$vo.user_id}" {if isset($appinfo.ad_salesman_id) &&  ($appinfo.ad_salesman_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+                            {/if}
+                            {/volist}
+                        </select>
+                  </div>
+              </div>
+                            
+                            <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">分配渠道</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="add_channel_id">
+                         <option value="">请选择</option>
+                         {volist name="userlist" id="vo" }
+                         {if $vo.user_limit=='2'}
+                         <option value="{$vo.user_id}" {if isset($appinfo.add_channel_id) &&  ($appinfo.add_channel_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+                         {/if}
+                         {/volist}
+                                            </select>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">状态</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="ad_state">
+                        <option value="0"  {if isset($appinfo.ad_state) && $appinfo.ad_state ==0}selected{/if} >正常</option>
+                        <option value="1"  {if isset($appinfo.ad_state) && $appinfo.ad_state ==1}selected{/if} >暂停</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">类型</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="add_url_type">
+                        <option value="0" {if isset($appinfo.add_url_type) && $appinfo.add_url_type ==0 }selected{/if}>优质小点击</option>
+                        <option value="1" {if isset($appinfo.add_url_type) && $appinfo.add_url_type ==1 }selected{/if} >大点击</option>
+                   
+                    </select>
+                  </div>
+              </div>
+                            <div class="form-group">
+                  <label class="col-sm-3 control-label">应用名称</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="app_name" value="{$appinfo.app_name??''}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">最大激活数</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="max_activate_num" value="{$appinfo.max_activate_num??''}" style="display: inline-block;width: 100px;">超过此数，自动停止上报，次日自动开启
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">进价</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="in_price" value="{$appinfo.in_price??''}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">出价</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="out_price" value="{$appinfo.out_price??''}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">平台</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="ad_platform_id">
+                        <option value="1"  {if isset($appinfo.ad_platform_id) && $appinfo.ad_platform_id ==1 }selected{/if}>iphone</option>
+                        <option value="2"  {if isset($appinfo.ad_platform_id) && $appinfo.ad_platform_id ==2 }selected{/if}>android</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">APP唯一标识</label>
+                  <div class="col-sm-9">
+                      <input class="form-control picinput" name="app_unique_id" value="{$appinfo.app_unique_id??''}">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">广告主通知地址</label>
+                  <div class="col-sm-9">
+                     <textarea rows="" cols="" name="ad_call_url" class="form-control">{$appinfo.ad_call_url??''}</textarea>
+                  </div>
+              </div>
+             <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">通知方式</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="ad_call_type">
+                        <option value="1"  {if isset($appinfo.ad_call_type) && $appinfo.ad_call_type ==1 }selected{/if}>GET</option>
+                        <option value="2"  {if isset($appinfo.ad_call_type) && $appinfo.ad_call_type ==2 }selected{/if}>POST</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">APPSTORE地址</label>
+                  <div class="col-sm-9">
+                     <textarea rows="" cols="" name="ad_appstore_url" class="form-control">{$appinfo.ad_appstore_url??''}</textarea>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">渠道回调地址</label>
+                  <div class="col-sm-9">
+                     <textarea rows="" cols="" name="ad_callback_url" class="form-control">{$appinfo.ad_callback_url??''}</textarea>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 col-sm-3 control-label">对接方式</label>
+                  <div class="col-sm-9">
+                      <select class="form-control picinput" name="ad_joint_type">
+                        <option value="2" {if isset($appinfo.ad_joint_type) && $appinfo.ad_joint_type ==2 }selected{/if}>302跳转</option>
+                        <option value="1" {if isset($appinfo.ad_joint_type) && $appinfo.ad_joint_type ==1 }selected{/if}>S2S</option>
+                    </select>
+                  </div>
+              </div>
+              
+              <div class="form-group">
+               <div class="col-lg-12">
+                   <button type="submit" class="btn btn-primary btn-lg btn-block"> 提 交 </button>
+               </div>
+               </div>
+      </div>   
+      </form>
+  </section>
+</div>
+</section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    
+    load href="/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
+    {load href="/static/admin/js/jquery.scrollTo.min.js" /}
+    {load href="/static/admin/js/jquery.nicescroll.js" /}
+    {load href="/static/admin/js/jquery.sparkline.js" /}
+    {load href="/static/admin/js/jquery.easy-pie-chart.js" /}
+    {load href="/static/admin/js/owl.carousel.js" /}
+    {load href="/static/admin/js/jquery.customSelect.min.js" /}
+    {load href="/static/admin/js/respond.min.js" /}
+    {load href="/static/admin/js/common-scripts.js" /}
+    <div id="ascrail2000" class="nicescroll-rails" style="width: 6px; z-index: 1000; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 6px; height: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 6px; width: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000" class="nicescroll-rails" style="width: 6px; z-index: 1000; background: rgb(64, 64, 64); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; display: none;"><div style="position: relative; top: 0px; float: right; width: 6px; height: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; background: rgb(64, 64, 64); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none;"><div style="position: relative; top: 0px; height: 6px; width: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div>
+    {load href="/static/admin/js/ga.js" /}
+    {load href="/static/admin/js/jquery.tagsinput.js" /}
+    <script>
+    $(document).ready(function() {
+        $("#owl-demo").owlCarousel({
+            navigation : true,
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem : true,
+		   autoPlay:true
+        });
+    });
+
+    //custom select box
+
+    $(function(){
+        $('select.styled').customSelect();
+    });
+    function pgreload(){
+  		window.location.reload();
+  	}
+      {if ($Request.param.par_up == 1)}
+      window.parent.location.reload();
+      {/if}
+  </script>
+
+  
+
+<div style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width:1px;height:1px" src="file:///C:/Users/Administrator/Desktop/%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/bb/%E8%93%9D%E8%9B%99%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0-%E6%B7%BB%E5%8A%A0_files/My97DatePicker.htm" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>

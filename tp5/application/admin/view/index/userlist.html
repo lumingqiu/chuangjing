@@ -123,14 +123,14 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="user#">
-                            <img alt="" src="./蓝蛙数据平台2_files/avatar1_small.jpg.下载">
+       
                             <span class="username">管理员</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="user#myModal" onclick="edit(&#39;http://market.ibluefrog.com/adm/user?do=set&amp;id=1&#39;,&#39;设置个人信息&#39;,800,500)"><i class=" icon-suitcase"></i>修改密码</a></li>
-                            <li><a href="http://market.ibluefrog.com/login/out"><i class="icon-key"></i> 安全退出</a></li>
+                            <li><a href="userlist#myModal" onclick="edit('user?do=edit&user_id=1')"><i class=" icon-suitcase"></i>修改密码</a></li>
+                            <li><a href="loginout"><i class="icon-key"></i> 安全退出</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -239,8 +239,8 @@
                                 {default /}管理员
                             {/switch}</td>
                                                <td class="center">
-                        <a href="user#myModal" data-toggle="modal" class="btn btn-primary btn-xs" onclick="edit('user?do=edit&user_id={$vo.user_id}')"><i class="icon-pencil"></i></a>
-						<button class="btn btn-danger btn-xs" onclick="del({$vo.user_id})"><i class="icon-trash "></i></button>
+                        <a href="user#myModal" data-toggle="modal" class="btn btn-primary btn-xs" onclick="edit('user?do=edit&user_id={$vo.user_id}')">修改</a>
+						<button class="btn btn-danger btn-xs" onclick="del({$vo.user_id})">删除</button>
                         </td>
                                             </tr>
                  
