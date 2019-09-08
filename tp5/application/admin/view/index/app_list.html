@@ -19,7 +19,7 @@
     {load href="/static/admin/css/style-responsive.css" /}
     {load href="/static/admin/css/magic.css" /}
     {load href="/static/admin/css/jquery.jspanel.css" /}
-    {load href="/static/admin/css/WdatePicker.css" /}
+    <!-- {load href="/static/admin/css/WdatePicker.css" /} -->
     {load href="/static/admin/css/adm.css" /}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -33,9 +33,10 @@
     {load href="/static/admin/js/bootstrap.min.js" /}
     {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
     {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
-    {load href="/static/admin/js/WdatePicker.js" /}
+    <!-- {load href="/static/admin/js/WdatePicker.js" /} -->
     {load href="/static/admin/js/basic.js" /}
     {load href="/static/admin/js/jquery.jspanel.css" /}
+    {load href="/static/admin/My97DatePicker/WdatePicker.js" /}
 
 
   <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style><style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
@@ -49,14 +50,14 @@
                 <div data-original-title="菜单导航" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="http://market.ibluefrog.com/market/adm/index.html" class="logo">创景<span>数据平台</span></a>
+            <a href="total_day" class="logo">创景<span>数据平台</span></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
                 <ul class="nav top-menu">
                     <!-- settings start -->
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="http://market.ibluefrog.com/market/adm/app_list#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="app_list#">
                             <i class="icon-tasks"></i>
                             <span class="badge bg-success">0</span>
                         </a>
@@ -186,7 +187,7 @@
   <section class="wrapper"><script>
 function delidfa(t,id){
 	if(confirm("确定吗?删除后不可恢复！")){
-		$.get('http://market.ibluefrog.com/market/adm/app_list?do=del&id='+id+'&t='+t,function(rs){
+		$.get('app_list?do=del&id='+id+'&t='+t,function(rs){
 			alert(rs);
 			window.location.reload();
 		})
@@ -194,7 +195,7 @@ function delidfa(t,id){
 }
 function cbidfa(t,id){
 	if(confirm("确定吗回调?！")){
-		$.get('http://market.ibluefrog.com/market/adm/app_list?do=cb&id='+id+'&t='+t,function(rs){
+		$.get('app_list?do=cb&id='+id+'&t='+t,function(rs){
 			alert(rs);
 			window.location.reload();
 		})
@@ -209,18 +210,18 @@ function cbidfa(t,id){
 			工具 <i class="icon-angle-down"></i>
 		</button>
 		<ul class="dropdown-menu pull-right">
-			<li><a href="http://market.ibluefrog.com/market/adm/app_list#">打印</a></li>
-			<li><a href="http://market.ibluefrog.com/market/adm/app_list?export=1">导出</a></li>
+			<li><a href="app_list#">打印</a></li>
+			<li><a href="app_list?export=1">导出</a></li>
 		</ul>
 	</div>
 	</header>
 	<div class="panel-body">
 	<form class="form-inline" role="form">
 		<div class="form-group">
-			安装日期：<input type="text" id="focusedInput" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" name="ins_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="2019-09-05">
+			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="ins_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="2019-09-05">
 		</div>
 		<div class="form-group">
-			激活日期：<input type="text" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" name="act_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="">
+			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="act_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="">
 		</div>
 				<div class="form-group">
 		<select name="channel_id" class="form-control">
@@ -369,7 +370,7 @@ function edit(href,title,width,height){
 }
     function del(id){
     	if(confirm("确定吗?删除后不可恢复！")){
-        	$.get('http://market.ibluefrog.com/market/adm/app_list?do=del&id='+id,function(rs){
+        	$.get('app_list?do=del&id='+id,function(rs){
         		alert(rs);
         		window.location.reload();
         	});
@@ -380,4 +381,5 @@ function edit(href,title,width,height){
 
   
 
-<div id="jsPanel-replacement-container"></div><div style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 186px; height: 198px;" src="./js/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
+<div id="jsPanel-replacement-container"></div><div style="position: absolute; top: -1970px; left: -1970px;"
+><iframe style="width: 186px; height: 198px;" src="__STATIC__/admin/js/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
