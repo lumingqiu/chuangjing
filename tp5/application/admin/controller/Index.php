@@ -49,7 +49,7 @@ class Index extends \app\common\controller
                         session('userinfo',\json_encode($user_info->toArray()));
                         return ["error"=>0,"message"=>'ok'];
                    }
-           
+
                 return ["error"=>1001,"message"=>'账号或者密码错误'];
             }  
         }
@@ -58,12 +58,98 @@ class Index extends \app\common\controller
 
     public function total_day()
     {
-        return $this->fetch();
+        
+        $page = 1;
+        $page_size = 20;
+        $page_count = count(Db::table('cj_ad_click_log')->select());
+        $loglist = Db::query("select count(id) as idn,SUM(activate_state) as asn , CONCAT(YEAR(create_time),',',MONTH( create_time),',',DAY(create_time)) AS data_time from cj_ad_click_log GROUP BY data_time DESC");
+        // $applist = Db::table('cj_ad_click_log')
+        //     ->alias('a')
+        //     ->join('cj_ad_app b','a.app_id = b.app_id','LEFT')
+        //     ->order('a.id', 'desc');
+        // if($this->request->param()){  
+        //     // if($this->request->get("name")){
+        //     //     $name = $this->request->get("name");
+        //     //     $applist = $applist->where('app_name','like',"%".$name."%");
+        //     // }
+        //     // // if($this->request->get("chaname")){
+        //     // //     $chaname = $this->request->get("chaname");
+        //     // //     $applist = $applist->where('ad_name','like',"%".$des."%");
+        //     // // }
+        //     // if($this->request->get("des")){
+        //     //     $des = $this->request->get("des");
+        //     //     $applist = $applist->where('ad_name','like',"%".$des."%");
+        //     // }
+        //     // if($this->request->get("id")){
+        //     //     $id = $this->request->get("id");
+        //     //     $applist = $applist->where("app_id",$id);
+        //     // }
+        //     if($this->request->param("page")){
+        //         $page = $this->request->param("page");
+        //     }
+            
+        // }
+        // $applist = $applist->limit(($page-1)*$page_size,$page_size);
+        // $applist = $applist->select();
+        // if($applist){
+        //     $applist = $applist;
+        // }else{
+        //     $applist = [];
+        // }
+        $pageinfo["page_count"] = $page_count;
+        $pageinfo["page_size"] = $page_size;
+        $pageinfo["page_index"] = $page;
+        $pageinfo["page_num"] = \ceil($page_count/$page_size);
+        $userlist = Db::table('cj_user')
+                           ->select();
+        return $this->fetch("",['loglist'=>$loglist,"pageinfo"=>$pageinfo,"userlist"=>$userlist]);
     }
 
     public function app_list()
     {
-        return $this->fetch();
+        $page = 1;
+        $page_size = 20;
+        $page_count = count(Db::table('cj_ad_click_log')->select());
+        $applist = Db::table('cj_ad_click_log')
+            ->alias('a')
+            ->join('cj_ad_app b','a.app_id = b.app_id','LEFT')
+            ->order('a.id', 'desc');
+        if($this->request->param()){  
+            // if($this->request->get("name")){
+            //     $name = $this->request->get("name");
+            //     $applist = $applist->where('app_name','like',"%".$name."%");
+            // }
+            // // if($this->request->get("chaname")){
+            // //     $chaname = $this->request->get("chaname");
+            // //     $applist = $applist->where('ad_name','like',"%".$des."%");
+            // // }
+            // if($this->request->get("des")){
+            //     $des = $this->request->get("des");
+            //     $applist = $applist->where('ad_name','like',"%".$des."%");
+            // }
+            // if($this->request->get("id")){
+            //     $id = $this->request->get("id");
+            //     $applist = $applist->where("app_id",$id);
+            // }
+            if($this->request->param("page")){
+                $page = $this->request->param("page");
+            }
+            
+        }
+        $applist = $applist->limit(($page-1)*$page_size,$page_size);
+        $applist = $applist->select();
+        if($applist){
+            $applist = $applist;
+        }else{
+            $applist = [];
+        }
+        $pageinfo["page_count"] = $page_count;
+        $pageinfo["page_size"] = $page_size;
+        $pageinfo["page_index"] = $page;
+        $pageinfo["page_num"] = \ceil($page_count/$page_size);
+        $userlist = Db::table('cj_user')
+                           ->select();
+        return $this->fetch("",['applist'=>$applist,"pageinfo"=>$pageinfo,"userlist"=>$userlist]);
     }
 
     public function app_upload()

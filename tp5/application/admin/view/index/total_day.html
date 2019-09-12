@@ -254,39 +254,43 @@
 						<th>安装数</th>
 						<th>渠道激活</th>
 						<th>渠道激活率</th>
-												<th>影藏激活</th>
+												<!-- <th>影藏激活</th>
 						<th>总计激活</th>
-						<th>激活率</th>
+						<th>激活率</th> -->
 											</tr>
 				</thead>
 				<tbody>
+                        {volist name="loglist" id="vo"}
 				    					<tr class="">
 					    						<td>
 						全部						</td>
-												<td>2019-03-18</td>
+												<td>{$vo.data_time}</td>
 						<td>
 						全部 </td>
 						<td>
 						全部						</td>
 						
-						<td>258</td>
-						<td>15</td>
-						<td>5.81%</td>
-												<td>0</td>
-						<td>15</td>
-						<td>5.81%</td>
+						<td>{$vo.idn}</td>
+						<td>{$vo.acn}</td>
+						<td><?php echo round(($vo.acn*100)/$vo.idn,2);?>%</td>
+                        {/volist}
 											</tr>
 
 			</tbody></table>
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="dataTables_info" id="editable-sample_info">总280条 每页30条 共10页</div>
+					<div class="dataTables_info" id="editable-sample_info">总{$pageinfo.page_count}条 每页{$pageinfo.page_size}条 共{$pageinfo.page_num}页</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="dataTables_paginate paging_bootstrap pagination">
-						<ul>
-						    <li class="disabled"><a href="javascript:;">首页</a></li>&nbsp;&nbsp;<li class="disabled"><a href="javascript:;">上一页</a></li>&nbsp;<li class="active disabled"><a href="javascript:;">1</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=2">2</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=3">3</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=4">4</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=5">5</a></li>&nbsp;&nbsp;<li class="next"><a href="file:///E:/adm/total_day?page=2">下一页</a></li>&nbsp;<li><a href="file:///E:/adm/total_day?page=10">尾页</a></li>						</ul>
-					</div>
+                        <ul>
+                            <li class=""><a href="total_day?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="total_day?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
+                            {for start="1" end="$pageinfo.page_num+1"}
+                                <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'total_day?page='.$i}">{$i}</a></li>&nbsp;
+                            {/for}   
+                            
+                            &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="total_day?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="total_day?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                    </div>
 				</div>
 			</div>
 		</div>

@@ -67,7 +67,7 @@
                                 <p class="green">你有0个未处理任务</p>
                             </li>
                             <li style="display: none;">
-                                <a href="http://market.ibluefrog.com/market/adm/app_list#">
+                                <a href="app_list#">
                                     <div class="task-info">
                                         <div class="desc">任务名称</div>
                                         <div class="percent">0%</div>
@@ -81,7 +81,7 @@
                             </li>
                          
                             <li class="external">
-                                <a href="http://market.ibluefrog.com/market/adm/app_list#">查看全部任务</a>
+                                <a href="app_list#">查看全部任务</a>
                             </li>
                         </ul>
                     </li>
@@ -90,7 +90,7 @@
                     <!-- inbox dropdown end -->
                     <!-- notification dropdown start-->
                     <li id="header_notification_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="http://market.ibluefrog.com/market/adm/app_list#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="app_list#">
 
                             <i class="icon-bell-alt"></i>
                             <span class="badge bg-warning">0</span>
@@ -101,7 +101,7 @@
                                 <p class="yellow">你有0条未读消息</p>
                             </li>
                             <li style="display: none;">
-                                <a href="http://market.ibluefrog.com/market/adm/app_list#">
+                                <a href="app_list#">
                                     <span class="label label-danger"><i class="icon-bolt"></i></span>
                                     ...
                                     <span class="small italic">..</span>
@@ -109,7 +109,7 @@
                             </li>
                            
                             <li>
-                                <a href="http://market.ibluefrog.com/market/adm/app_list#">查看全部消息</a>
+                                <a href="app_list#">查看全部消息</a>
                             </li>
                         </ul>
                     </li>
@@ -125,7 +125,7 @@
                     </li>
                     <!-- user login dropdown start-->
                     <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="http://market.ibluefrog.com/market/adm/app_list#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="app_list#">
                      
                             <span class="username">管理员</span>
                             <b class="caret"></b>
@@ -273,35 +273,54 @@ function cbidfa(t,id){
 											</tr>
 				</thead>
 				<tbody>
+                        {volist name="applist" id="vo"}
 				    					<tr class="">
-					    <td>95238</td>
-					    						<td>大众联运</td>
-												<td>iphone</td>
-						<td>吉欣</td>
-						<td>UC浏览器(2171)</td>
-												<td>0.00</td>
-						<td>0.00</td>
-												<td>B3FC1148-EC92-46DA-87EA-BC1BC245B745</td>
+					    <td>{$vo.id}</td>
+                                                <td>{$vo.app_name}</td>
+                                                <td>
+                                                {switch name="$vo.ad_platform_id"}
+                                                    {case value="1"}iphone{/case}
+                                                    {case value="2"}android{/case}
+                                                    {default /}unknow
+                                                {/switch}
+												</td>
+						<td>
+                                {volist name="userlist" id="vo1" }
+                                {if $vo1.user_limit=='2' && $vo.add_channel_id == $vo1.user_id }
+                                    {$vo1.user_name}
+                                {/if}
+                                {/volist}
+                        </td>
+						<td>{$vo.app_name}({$vo.app_id})</td>
+												<td>{$vo.in_price}</td>
+						<td>{$vo.out_price}</td>
+												<td>{$vo.user_idfa}</td>
 						
-						<td>2019-09-05 10:49:21</td>
-												<td>未激活</td>
+						<td>{$vo.user_idfa.create_time}</td>
+												<td>{$vo.activate_state == 1 ? $vo.user_idfa.activate_time :'未激活'}</td>
 												
 												<td>
 						<a class="btn btn-danger btn-xs" onclick="delidfa(&#39;2019-09-05 10:49:21&#39;,&#39;95238&#39;)"><i class="icon-trash "></i> 删除</a>
 												</td>
 											</tr>
-										
+                        {/volist}
 									</tbody>
 			</table>
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="dataTables_info" id="editable-sample_info">总95238条 每页30条 共3175页</div>
+					<div class="dataTables_info" id="editable-sample_info">总{$pageinfo.page_count}条 每页{$pageinfo.page_size}条 共{$pageinfo.page_num}页</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="dataTables_paginate paging_bootstrap pagination">
-						<ul>
-						    <li class="disabled"><a href="javascript:;">首页</a></li>&nbsp;&nbsp;<li class="disabled"><a href="javascript:;">上一页</a></li>&nbsp;<li class="active disabled"><a href="javascript:;">1</a></li>&nbsp;<li><a href="http://market.ibluefrog.com/market/adm/app_list?page=2">2</a></li>&nbsp;<li><a href="http://market.ibluefrog.com/market/adm/app_list?page=3">3</a></li>&nbsp;<li><a href="http://market.ibluefrog.com/market/adm/app_list?page=4">4</a></li>&nbsp;<li><a href="http://market.ibluefrog.com/market/adm/app_list?page=5">5</a></li>&nbsp;&nbsp;<li class="next"><a href="http://market.ibluefrog.com/market/adm/app_list?page=2">下一页</a></li>&nbsp;<li><a href="http://market.ibluefrog.com/market/adm/app_list?page=3175">尾页</a></li>						</ul>
-					</div>
+                        <div class="dataTables_paginate paging_bootstrap pagination">
+                                <ul>
+                                    <li class=""><a href="app_list?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_list?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
+                                    {for start="1" end="$pageinfo.page_num+1"}
+                                        <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_list?page='.$i}">{$i}</a></li>&nbsp;
+                                    {/for}
+                                    
+                                    
+                                    &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_list?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="app_list?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                            </div>
 				</div>
 			</div>
 		</div>
