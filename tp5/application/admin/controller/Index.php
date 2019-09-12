@@ -152,6 +152,16 @@ class Index extends \app\common\controller
         return $this->fetch("",['applist'=>$applist,"pageinfo"=>$pageinfo,"userlist"=>$userlist]);
     }
 
+    public function app_list_del(){
+        $id = $this->request->param("id");
+        if(Db::table('cj_ad_click_log')->delete($id))
+        {
+            return ["成功"];
+        }else{
+            return ["失败"];
+        }
+    }
+
     public function app_upload()
     {
         $page = 1;

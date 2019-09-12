@@ -271,8 +271,8 @@
 						全部						</td>
 						
 						<td>{$vo.idn}</td>
-						<td>{$vo.acn}</td>
-						<td><?php echo round(($vo.acn*100)/$vo.idn,2);?>%</td>
+						<td>{$vo.asn}</td>
+						<td><?php echo round(($vo['asn']*100)/$vo['idn'],2);?>%</td>
                         {/volist}
 											</tr>
 

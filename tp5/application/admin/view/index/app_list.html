@@ -185,9 +185,9 @@
       <!--sidebar end-->
       <section id="main-content" style="padding-bottom: 20px;">
   <section class="wrapper"><script>
-function delidfa(t,id){
+function delidfa(id){
 	if(confirm("确定吗?删除后不可恢复！")){
-		$.get('app_list?do=del&id='+id+'&t='+t,function(rs){
+		$.get('app_list_del?id='+id,function(rs){
 			alert(rs);
 			window.location.reload();
 		})
@@ -205,7 +205,7 @@ function cbidfa(t,id){
 <!-- page start-->
 <section class="panel">
 	<header class="panel-heading" style="padding: 10px 15px 10px 15px;height: 54px;line-height: 34px;"> 日详情  （备注：此处查的激活总数和日报表的总数不一定一致，此处查询的激活数据是当天安装，当天激活的数量。日报表查询的激活数据是：当天激活的数据+之前安装当天激活的数据）
-	<div class="btn-group pull-right">
+	<!-- <div class="btn-group pull-right">
 		<button class="btn dropdown-toggle" data-toggle="dropdown">
 			工具 <i class="icon-angle-down"></i>
 		</button>
@@ -213,7 +213,7 @@ function cbidfa(t,id){
 			<li><a href="app_list#">打印</a></li>
 			<li><a href="app_list?export=1">导出</a></li>
 		</ul>
-	</div>
+	</div> -->
 	</header>
 	<div class="panel-body">
 	<form class="form-inline" role="form">
@@ -296,11 +296,11 @@ function cbidfa(t,id){
 						<td>{$vo.out_price}</td>
 												<td>{$vo.user_idfa}</td>
 						
-						<td>{$vo.user_idfa.create_time}</td>
-												<td>{$vo.activate_state == 1 ? $vo.user_idfa.activate_time :'未激活'}</td>
+						<td>{$vo.create_time}</td>
+												<td>{$vo.activate_state == 1 ? $vo.activate_time :'未激活'}</td>
 												
 												<td>
-						<a class="btn btn-danger btn-xs" onclick="delidfa(&#39;2019-09-05 10:49:21&#39;,&#39;95238&#39;)"><i class="icon-trash "></i> 删除</a>
+						<a class="btn btn-danger btn-xs" onclick="delidfa({$vo.id})"><i class="icon-trash "></i> 删除</a>
 												</td>
 											</tr>
                         {/volist}
