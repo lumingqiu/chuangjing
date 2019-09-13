@@ -62,7 +62,7 @@ class Index extends \app\common\controller
         $page = 1;
         $page_size = 20;
         $page_count = count(Db::table('cj_ad_click_log')->select());
-        $loglist = Db::query("select count(id) as idn,SUM(activate_state) as asn , CONCAT(YEAR(create_time),',',MONTH( create_time),',',DAY(create_time)) AS data_time from cj_ad_click_log GROUP BY data_time DESC");
+        $loglist = Db::query("select count(id) as idn,SUM(activate_state) as asn , CONCAT(YEAR(create_time),'-',MONTH( create_time),'-',DAY(create_time)) AS data_time from cj_ad_click_log GROUP BY data_time DESC");
         // $applist = Db::table('cj_ad_click_log')
         //     ->alias('a')
         //     ->join('cj_ad_app b','a.app_id = b.app_id','LEFT')

@@ -218,25 +218,29 @@ function cbidfa(t,id){
 	<div class="panel-body">
 	<form class="form-inline" role="form">
 		<div class="form-group">
-			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="ins_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="2019-09-05">
+			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="create_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="{$Request.param.create_time}">
 		</div>
 		<div class="form-group">
-			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="act_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="">
+			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="activate_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="{$Request.param.activate_time}">
 		</div>
 				<div class="form-group">
-		<select name="channel_id" class="form-control">
+		<select name="add_channel_id" class="form-control">
 		      <option value="0">选择渠道</option>
-                            <option value="1831">1831【京盟世纪】 - 摩天轮 - 【爱瓦力】</option>
+              {volist name="userlist" id="vo" }
+              {if $vo.user_limit=='2'}
+              <option value="{$vo.user_id}" {if isset($appinfo.add_channel_id) &&  ($appinfo.add_channel_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+              {/if}
+              {/volist}
                         </select>
         </div>
          <div class="form-group">
-        <input type="text" id="appidinput" class="form-control" name="appidinput" placeholder="appid" value="">
+        <input type="text" id="appidinput" class="form-control" name="app_id" placeholder="appid" value="{$Request.param.app_id}">
         </div>
         		<div class="form-group">
-		<select name="act_status" class="form-control">
+		<select name="activate_state" class="form-control">
 	      <option value="">是否激活</option>
-          <option value="0">未激活</option>
-          <option value="1">已激活</option>
+          <option value="0" {if $Request.param.activate_state == 0}selected{/if}>未激活</option>
+          <option value="1" {if $Request.param.activate_state == 1}selected{/if}>已激活</option>
                     <option value="2">隐藏激活</option>
                   </select>
         </div>
@@ -245,7 +249,7 @@ function cbidfa(t,id){
 		
 		 		
 		<div class="form-group">
-			<input type="text" name="idfa" class="form-control" placeholder="IDFA" value="" style="width: 300px;">
+			<input type="text" name="user_idfa" class="form-control" placeholder="IDFA" value="{$Request.param.user_idfa}" style="width: 300px;">
 		</div>
 		<button type="submit" class="btn btn-info">查询</button>
 	</form>

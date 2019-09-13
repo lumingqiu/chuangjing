@@ -195,29 +195,31 @@
 	<div class="panel-body">
 	<form class="form-inline" role="form">
 		<div class="form-group">
-			<input type="text" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" id="stime" name="stime" class="form-control" placeholder="开始时间" value="">
+			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="create_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="{$Request.param.create_time}">
 		</div>
 		<div class="form-group">
-			<input type="text" onclick="WdatePicker({skin:&#39;whyGreen&#39;,dateFmt:&#39;yyyy-MM-dd&#39;})" id="stime" name="etime" class="form-control" placeholder="结束时间" value="">
+			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="activate_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="{$Request.param.activate_time}">
 		</div>
 				<div class="form-group">
-		<select name="uid" id="uid" class="form-control" onchange="selapp()">
+		<select name="add_channel_id" id="uid" class="form-control" onchange="selapp()">
 		      <option value="">全部渠道</option>
-                            <option value="4">爱瓦力</option>
+              {volist name="userlist" id="vo" }
+              {if $vo.user_limit=='2'}
+              <option value="{$vo.user_id}" {if isset($appinfo.add_channel_id) &&  ($appinfo.add_channel_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+              {/if}
+              {/volist}
                         </select>
         </div>
                 
         <div class="form-group">
-		  <select name="appid" id="appid" class="form-control">
-                 
-          </select>
+            <input type="text" id="appidinput" class="form-control" name="app_id" placeholder="appid" value="{$Request.param.app_id}">
         </div>
                 <div class="form-group">
-        <input type="text" id="des" name="des" value="" placeholder="广告主名称关键词" class="form-control">
+        <input type="text" id="des" name="ad_name" value="" placeholder="广告主名称关键词" class="form-control">
         </div>
         
         <div class="form-group">
-        <input type="text" id="appname" name="appname" value="" placeholder="应用名称关键词" class="form-control">
+        <input type="text" id="appname" name="app_name" value="" placeholder="应用名称关键词" class="form-control">
         </div>
                 
         <script>
