@@ -33,6 +33,10 @@ class Index extends \app\common\controller
             }else{
                 $json  = ["err"=>1005,"message"=>"激活数据同步失败"];
             }
+            if($params['callback']){
+                $res = file_get_contents($params['callback']);
+            }
+            Log::record($res);
         }else{
             $json  = ["err"=>1002,"message"=>"请传参"];
         }
@@ -41,7 +45,7 @@ class Index extends \app\common\controller
 
     
 
-    public function savaParams()
+    public function click()
     {
         $params = $this->request->param();
         $arr = [];
@@ -60,8 +64,9 @@ class Index extends \app\common\controller
         }
         $id = Db::table('cj_ad_click_log')->insertGetId($arr);    
         if($id) {
+            $callbackurl = $params['callback'];
             $callback = $this->request->domain();
-            $callback = $callback."/index/nodify?id=".$id."&app_id=".$arr['app_id'];
+            $callback = $callback."/index/nodify?id=".$id."&app_id=".$arr['app_id']."&callback=".$callbackurl;
             $app_info = Db::table('cj_ad_app')->where('app_id',$arr['app_id'] )->select();
             $ad_call_url = $app_info[0]['ad_call_url'];
             $redirect_url =  $ad_call_url."&idfa=".$arr['user_idfa']."&ip=".$arr['user_ip']."&callback=".\urlencode($callback);
