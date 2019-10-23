@@ -9,33 +9,33 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>创景数据平台</title>
-    {load href="/static/admin/css/jquery-ui.css" /}
-    {load href="/static/admin/css/bootstrap.min.css" /}
-    {load href="/static/admin/css/bootstrap-reset.css" /}
-    {load href="/static/admin/css/font-awesome.css" /}
-    {load href="/static/admin/css/jquery.easy-pie-chart.css" /}
-    {load href="/static/admin/css/owl.carousel.css" /}
-    {load href="/static/admin/css/style.css" /}
-    {load href="/static/admin/css/style-responsive.css" /}
-    {load href="/static/admin/css/magic.css" /}
-    {load href="/static/admin/css/jquery.jspanel.css" /}
-    {load href="/static/admin/css/WdatePicker.css" /}
-    {load href="/static/admin/css/adm.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery-ui.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap.min.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap-reset.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/font-awesome.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.easy-pie-chart.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/owl.carousel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style-responsive.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/magic.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.jspanel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/WdatePicker.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/adm.css" /}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
-        {load href="/static/admin/js/html5shiv.js" /}
-        {load href="/static/admin/js/respond.min.js" /}
+        {load href="<?php echo ADMIN_HOST;?>/static/admin/js/html5shiv.js" /}
+        {load href="<?php echo ADMIN_HOST;?>/static/admin/js/respond.min.js" /}
     <![endif]-->
     
-    {load href="/static/admin/js/uaest.js" /}
-    {load href="/static/admin/js/jquery-1.8.3.min.js" /}
-    {load href="/static/admin/js/jquery-ui.min.js" /}
-    {load href="/static/admin/js/bootstrap.min.js" /}
-    {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
-    {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
-    {load href="/static/admin/js/WdatePicker.js" /}
-    {load href="/static/admin/js/basic.js" /}
-    {load href="/static/admin/js/jquery.jspanel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/uaest.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-1.8.3.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-ui.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/bootstrap.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.ui.touch-punch.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel-compiled.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/WdatePicker.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/basic.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel.css" /}
   <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style><style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
 
   <body>
@@ -295,13 +295,13 @@ function savePer(id){
                     <div class="col-lg-6">
                         <div class="dataTables_paginate paging_bootstrap pagination">
                             <ul>
-                                <li class=""><a href="app_upload?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_upload?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
+                                <li class=""><a href="app_upload?page=1&<?php echo getUrlString($_GET);?>">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_upload?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}&<?php echo getUrlString($_GET);?>">上一页</a></li>&nbsp;
                                 {for start="1" end="$pageinfo.page_num+1"}
-                                    <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_upload?page='.$i}">{$i}</a></li>&nbsp;
+                                    <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_upload?page='.$i}&<?php echo getUrlString($_GET);?>">{$i}</a></li>&nbsp;
                                 {/for}
                                 
                                 
-                                &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_upload?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="app_upload?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                                &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_upload?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}&<?php echo getUrlString($_GET);?>">下一页</a></li>&nbsp;<li><a href="app_upload?page={$pageinfo.page_num}&<?php echo getUrlString($_GET);?>">尾页</a></li>						</ul>
                         </div>
                     </div>
                 </div>
@@ -323,15 +323,15 @@ function test(id){
 
     <!-- js placed at the end of the document so the pages load faster -->
     
-    {load href="/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
-    {load href="/static/admin/js/jquery.scrollTo.min.js" /}
-    {load href="/static/admin/js/jquery.nicescroll.js" /}
-    {load href="/static/admin/js/jquery.sparkline.js" /}
-    {load href="/static/admin/js/jquery.easy-pie-chart.js" /}
-    {load href="/static/admin/js/owl.carousel.js" /}
-    {load href="/static/admin/js/jquery.customSelect.min.js" /}
-    {load href="/static/admin/js/respond.min.js" /}
-    {load href="/static/admin/js/common-scripts.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.scrollTo.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.nicescroll.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.sparkline.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.easy-pie-chart.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/owl.carousel.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.customSelect.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/respond.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/common-scripts.js" /}
     <div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; background: rgb(64, 64, 64); cursor: default; position: fixed; top: 0px; left: 207px; height: 845px; opacity: 0; display: none;"><div style="position: relative; top: 0px; float: right; width: 3px; height: 20px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; background: rgb(64, 64, 64); top: 842px; left: 0px; position: fixed; cursor: default; opacity: 0; display: none;"><div style="position: relative; top: 0px; height: 3px; width: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px; left: 0px;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; background: rgb(64, 64, 64); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 6px; height: 339px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; background: rgb(64, 64, 64); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0;"><div style="position: relative; top: 0px; height: 6px; width: 1870px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div>
     <script>
     $(document).ready(function() {

@@ -9,34 +9,34 @@
     <link rel="shortcut icon" href="http://market.ibluefrog.com/market/adm/img/favicon.png">
 
     <title>创景数据平台</title>
-    {load href="/static/admin/css/jquery-ui.css" /}
-    {load href="/static/admin/css/bootstrap.min.css" /}
-    {load href="/static/admin/css/bootstrap-reset.css" /}
-    {load href="/static/admin/css/font-awesome.css" /}
-    {load href="/static/admin/css/jquery.easy-pie-chart.css" /}
-    {load href="/static/admin/css/owl.carousel.css" /}
-    {load href="/static/admin/css/style.css" /}
-    {load href="/static/admin/css/style-responsive.css" /}
-    {load href="/static/admin/css/magic.css" /}
-    {load href="/static/admin/css/jquery.jspanel.css" /}
-    <!-- {load href="/static/admin/css/WdatePicker.css" /} -->
-    {load href="/static/admin/css/adm.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery-ui.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap.min.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap-reset.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/font-awesome.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.easy-pie-chart.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/owl.carousel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style-responsive.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/magic.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.jspanel.css" /}
+    <!-- {load href="<?php echo ADMIN_HOST;?>/static/admin/css/WdatePicker.css" /} -->
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/adm.css" /}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/html5shiv.js"></script>
       <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/respond.min.js"></script>
     <![endif]-->
     
-    {load href="/static/admin/js/uaest.js" /}
-    {load href="/static/admin/js/jquery-1.8.3.min.js" /}
-    {load href="/static/admin/js/jquery-ui.min.js" /}
-    {load href="/static/admin/js/bootstrap.min.js" /}
-    {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
-    {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
-    <!-- {load href="/static/admin/js/WdatePicker.js" /} -->
-    {load href="/static/admin/js/basic.js" /}
-    {load href="/static/admin/js/jquery.jspanel.css" /}
-    {load href="/static/admin/My97DatePicker/WdatePicker.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/uaest.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-1.8.3.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-ui.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/bootstrap.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.ui.touch-punch.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel-compiled.js" /}
+    <!-- {load href="<?php echo ADMIN_HOST;?>/static/admin/js/WdatePicker.js" /} -->
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/basic.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/My97DatePicker/WdatePicker.js" /}
 
 
   <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style><style>@font-face{font-family:uc-nexus-iconfont;src:url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff) format('woff'),url(chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf) format('truetype')}</style></head>
@@ -162,7 +162,7 @@
                             <li class="active"><a href="app_list">日详情</a></li>
                         </ul>
                   </li>
-                                
+                  {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
                   
                   <li>
                       <a href="app_upload">
@@ -177,7 +177,7 @@
                           <span>用户管理</span>
                       </a>
                   </li>
-                                    
+                         {/if}           
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -219,7 +219,8 @@ function cbidfa(t,id){
 	<form class="form-inline" role="form">
 		<div class="form-group">
 			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="create_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="{$Request.param.create_time}">
-		</div>
+        </div>
+        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 		<div class="form-group">
 			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="activate_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="{$Request.param.activate_time}">
 		</div>
@@ -228,14 +229,16 @@ function cbidfa(t,id){
 		      <option value="0">选择渠道</option>
               {volist name="userlist" id="vo" }
               {if $vo.user_limit=='2'}
-              <option value="{$vo.user_id}" {if isset($appinfo.add_channel_id) &&  ($appinfo.add_channel_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+              <option  value="{$vo.user_id}" {if $Request.param.add_channel_id &&  $Request.param.add_channel_id == $vo.user_id} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
               {/if}
               {/volist}
                         </select>
         </div>
+        {/if}
          <div class="form-group">
         <input type="text" id="appidinput" class="form-control" name="app_id" placeholder="appid" value="{$Request.param.app_id}">
         </div>
+        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
         		<div class="form-group">
 		<select name="activate_state" class="form-control">
 	      <option value="">是否激活</option>
@@ -245,7 +248,7 @@ function cbidfa(t,id){
                   </select>
         </div>
         
-        
+        {/if}
 		
 		 		
 		<div class="form-group">
@@ -267,20 +270,25 @@ function cbidfa(t,id){
 					    						<th>广告主</th>
 												<th>平台</th>
 						<th>渠道</th>
-						<th>APP</th>
+                        <th>APP</th>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 												<th>进价</th>
-						<th>成本</th>
-												<th>IDFA</th>
-						<th>安装时间</th>
+                        <th>成本</th>
+                        {/if}
+                                                <th>IDFA</th>
+                                               
+                        <th>安装时间</th>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 						<th>激活时间</th>
-												<th>操作</th>
+                                                <th>操作</th>
+                                                {/if}
 											</tr>
 				</thead>
 				<tbody>
                         {volist name="applist" id="vo"}
 				    					<tr class="">
 					    <td>{$vo.id}</td>
-                                                <td>{$vo.app_name}</td>
+                                                <td>{$vo.ad_name}</td>
                                                 <td>
                                                 {switch name="$vo.ad_platform_id"}
                                                     {case value="1"}iphone{/case}
@@ -295,17 +303,21 @@ function cbidfa(t,id){
                                 {/if}
                                 {/volist}
                         </td>
-						<td>{$vo.app_name}({$vo.app_id})</td>
+                        <td>{$vo.app_name}({$vo.app_id})</td>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 												<td>{$vo.in_price}</td>
-						<td>{$vo.out_price}</td>
+                        <td>{$vo.out_price}</td>
+                        {/if}
 												<td>{$vo.user_idfa}</td>
 						
-						<td>{$vo.create_time}</td>
+                        <td>{$vo.create_time}</td>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 												<td>{$vo.activate_state == 1 ? $vo.activate_time :'未激活'}</td>
 												
 												<td>
 						<a class="btn btn-danger btn-xs" onclick="delidfa({$vo.id})"><i class="icon-trash "></i> 删除</a>
-												</td>
+                                                </td>
+                                                {/if}
 											</tr>
                         {/volist}
 									</tbody>
@@ -317,13 +329,49 @@ function cbidfa(t,id){
 				<div class="col-lg-6">
                         <div class="dataTables_paginate paging_bootstrap pagination">
                                 <ul>
-                                    <li class=""><a href="app_list?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_list?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
-                                    {for start="1" end="$pageinfo.page_num+1"}
-                                        <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_list?page='.$i}">{$i}</a></li>&nbsp;
+                                    <li class=""><a href="app_list?page=1&<?php echo getUrlString($_GET);?>">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="app_list?page={$pageinfo.page_index-1<1?'javascript:;':($pageinfo.page_index-1)}&<?php echo getUrlString($_GET);?>">上一页</a></li>&nbsp;
+                                    {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
+                                    {if $pageinfo.page_num+1 <10 }
+                                    {for start="1" end="$pageinfo.page_num+1"}             
+                                        <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_list?page='.$i}&<?php echo getUrlString($_GET);?>">{$i}</a></li>&nbsp;
                                     {/for}
+                                    {else /}
+                                    <li class=" {$pageinfo.page_index==1?'disabled':''} "><a href="{$pageinfo.page_index==1?'javascript:;':'app_list?page=1'}&<?php echo getUrlString($_GET);?>">1</a></li>&nbsp;
+                                    <li class=" {$pageinfo.page_index==2?'disabled':''} "><a href="{$pageinfo.page_index==2?'javascript:;':'app_list?page=2'}&<?php echo getUrlString($_GET);?>">2</a></li>&nbsp;
+                                    {if $pageinfo.page_index >3 && $pageinfo.page_index <$pageinfo.page_num-2} 
+                                    {if $pageinfo.page_index >4}
+                                    <li>...</li>
+                                    {/if}
+                                        {for start="$pageinfo.page_index-1" end="$pageinfo.page_index+2"}    
+                                            <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'app_list?page='.$i}&<?php echo getUrlString($_GET);?>">{$i}</a></li>&nbsp;                       
+                                        {/for}
+                                        {if $pageinfo.page_index <$pageinfo.page_num-3}
+                                        <li>...</li>
+                                        {/if}
+                                    {else /}
+                                    {if $pageinfo.page_index==2 || $pageinfo.page_index==3}
+                                    <li class=" {$pageinfo.page_index==3?'disabled':''} "><a href="{$pageinfo.page_index==3?'javascript:;':'app_list?page=3'}&<?php echo getUrlString($_GET);?>">3</a></li>&nbsp;
+                                        {/if}
+                                        {if $pageinfo.page_index==3}
+                                    <li class=" {$pageinfo.page_index==4?'disabled':''} "><a href="{$pageinfo.page_index==4?'javascript:;':'app_list?page=4'}&<?php echo getUrlString($_GET);?>">4</a></li>&nbsp;
+                                        {/if}
+                                    <li>...</li>
+                                    <li class=" {$pageinfo.page_index==\floor($pageinfo.page_num/2)?'disabled':''} "><a href="{$pageinfo.page_index==\floor($pageinfo.page_num/2)?'javascript:;':'app_list?page='.\floor($pageinfo.page_num/2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num/2|floor}</a></li>&nbsp;
+                                    <li class=" {$pageinfo.page_index==\ceil($pageinfo.page_num/2)?'disabled':''} "><a href="{$pageinfo.page_index==\ceil($pageinfo.page_num/2)?'javascript:;':'app_list?page='.\ceil($pageinfo.page_num/2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num/2|ceil}</a></li>&nbsp;
+                                    <li>...</li>
+                                    {if $pageinfo.page_index==($pageinfo.page_num-2)}
+                                    <li class=" {$pageinfo.page_index==($pageinfo.page_num-3)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-3)?'javascript:;':'app_list?page='.($pageinfo.page_num-3)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-3}</a></li>&nbsp;
+                                        {/if}
+                                    {if $pageinfo.page_index==($pageinfo.page_num-1) || $pageinfo.page_index==($pageinfo.page_num-2)}
+                                    <li class=" {$pageinfo.page_index==($pageinfo.page_num-2)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-2)?'javascript:;':'app_list?page='.($pageinfo.page_num-2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-2}</a></li>&nbsp;
+                                        {/if}
+                                    {/if}
+                                    <li class=" {$pageinfo.page_index==($pageinfo.page_num-1)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-1)?'javascript:;':'app_list?page='.($pageinfo.page_num-1)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-1}</a></li>&nbsp;
+                                    <li class=" {$pageinfo.page_index==$pageinfo.page_num?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num)?'javascript:;':'app_list?page='.($pageinfo.page_num)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num}</a></li>&nbsp;
+                                    {/if}
                                     
-                                    
-                                    &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_list?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="app_list?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                                    {/if}
+                                    &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="app_list?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}&<?php echo getUrlString($_GET);?>">下一页</a></li>&nbsp;<li><a href="app_list?page={$pageinfo.page_num}&<?php echo getUrlString($_GET);?>">尾页</a></li>						</ul>
                             </div>
 				</div>
 			</div>
@@ -340,15 +388,15 @@ function cbidfa(t,id){
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    {load href="/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
-    {load href="/static/admin/js/jquery.scrollTo.min.js" /}
-    {load href="/static/admin/js/jquery.nicescroll.js" /}
-    {load href="/static/admin/js/jquery.sparkline.js" /}
-    {load href="/static/admin/js/jquery.easy-pie-chart.js" /}
-    {load href="/static/admin/js/owl.carousel.js" /}
-    {load href="/static/admin/js/jquery.customSelect.min.js" /}
-    {load href="/static/admin/js/respond.min.js" /}
-    {load href="/static/admin/js/common-scripts.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.scrollTo.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.nicescroll.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.sparkline.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.easy-pie-chart.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/owl.carousel.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.customSelect.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/respond.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/common-scripts.js" /}
     <div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; background: rgb(64, 64, 64); cursor: default; position: fixed; top: 0px; left: 207px; height: 845px; opacity: 0; display: none;"><div style="position: relative; top: 0px; float: right; width: 3px; height: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; background: rgb(64, 64, 64); top: 842px; left: 0px; position: fixed; cursor: default; opacity: 0; display: none;"><div style="position: relative; top: 0px; height: 3px; width: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px; left: 0px;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; background: rgb(64, 64, 64); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 6px; height: 424px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; background: rgb(64, 64, 64); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0;"><div style="position: relative; top: 0px; height: 6px; width: 1870px; background-color: rgb(232, 64, 63); background-clip: padding-box; border-radius: 10px;"></div></div>
     <script>
     $(document).ready(function() {
@@ -405,4 +453,4 @@ function edit(href,title,width,height){
   
 
 <div id="jsPanel-replacement-container"></div><div style="position: absolute; top: -1970px; left: -1970px;"
-><iframe style="width: 186px; height: 198px;" src="__STATIC__/admin/js/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
+><iframe style="width: 186px; height: 198px;" src="<?php echo ADMIN_HOST;?>/admin/js/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>

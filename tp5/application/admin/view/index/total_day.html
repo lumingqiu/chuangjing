@@ -8,34 +8,34 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>创景数据平台</title>
-    {load href="/static/admin/css/jquery-ui.css" /}
-    {load href="/static/admin/css/bootstrap.min.css" /}
-    {load href="/static/admin/css/bootstrap-reset.css" /}
-    {load href="/static/admin/css/font-awesome.css" /}
-    {load href="/static/admin/css/jquery.easy-pie-chart.css" /}
-    {load href="/static/admin/css/owl.carousel.css" /}
-    {load href="/static/admin/css/style.css" /}
-    {load href="/static/admin/css/style-responsive.css" /}
-    {load href="/static/admin/css/magic.css" /}
-    {load href="/static/admin/css/jquery.jspanel.css" /}
-    <!-- {load href="/static/admin/css/WdatePicker.css" /} -->
-    {load href="/static/admin/css/adm.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery-ui.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap.min.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap-reset.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/font-awesome.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.easy-pie-chart.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/owl.carousel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style-responsive.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/magic.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/jquery.jspanel.css" /}
+    <!-- {load href="<?php echo ADMIN_HOST;?>/static/admin/css/WdatePicker.css" /} -->
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/adm.css" /}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/html5shiv.js"></script>
       <script src="http://market.ibluefrog.com/js/flatlabbootstrap/admin/template_content/js/respond.min.js"></script>
     <![endif]-->
     
-    {load href="/static/admin/js/uaest.js" /}
-    {load href="/static/admin/js/jquery-1.8.3.min.js" /}
-    {load href="/static/admin/js/jquery-ui.min.js" /}
-    {load href="/static/admin/js/bootstrap.min.js" /}
-    {load href="/static/admin/js/jquery.ui.touch-punch.min.js" /}
-    {load href="/static/admin/js/jquery.jspanel-compiled.js" /}
-    <!-- {load href="/static/admin/js/WdatePicker.js" /} -->
-    {load href="/static/admin/js/basic.js" /}
-    {load href="/static/admin/js/jquery.jspanel.css" /}
-    {load href="/static/admin/My97DatePicker/WdatePicker.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/uaest.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-1.8.3.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery-ui.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/bootstrap.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.ui.touch-punch.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel-compiled.js" /}
+    <!-- {load href="<?php echo ADMIN_HOST;?>/static/admin/js/WdatePicker.js" /} -->
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/basic.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.jspanel.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/My97DatePicker/WdatePicker.js" /}
   <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;display: block;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;padding: 5px 5px 8px 5px;font: 10px arial, san serif;text-align: left;}</style></head>
 
   <body>
@@ -160,7 +160,7 @@
                                                 </ul>
                   </li>
                                 
-                  
+                  {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
                   <li>
                       <a href="app_upload">
                           <i class="icon-book"></i>
@@ -174,6 +174,7 @@
                           <span>用户管理</span>
                       </a>
                   </li>
+                  {/if}
                                     
               </ul>
               <!-- sidebar menu end-->
@@ -196,7 +197,8 @@
 	<form class="form-inline" role="form">
 		<div class="form-group">
 			安装日期：<input type="text"  id="focusedInput" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="create_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="安装时间" value="{$Request.param.create_time}">
-		</div>
+        </div>
+        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
 		<div class="form-group">
 			激活日期：<input type="text" onclick="WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})" name="activate_time" style="display: inline-block;width: 120px;" class="form-control" placeholder="激活时间" value="{$Request.param.activate_time}">
 		</div>
@@ -205,21 +207,21 @@
 		      <option value="">全部渠道</option>
               {volist name="userlist" id="vo" }
               {if $vo.user_limit=='2'}
-              <option value="{$vo.user_id}" {if isset($appinfo.add_channel_id) &&  ($appinfo.add_channel_id == $vo.user_id)} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
+              <option value="{$vo.user_id}" {if $Request.param.add_channel_id &&  $Request.param.add_channel_id == $vo.user_id} selected {/if} >{$vo.user_name} -UID:- {$vo.user_id} </option>
               {/if}
               {/volist}
                         </select>
         </div>
-                
+                {/if}
         <div class="form-group">
             <input type="text" id="appidinput" class="form-control" name="app_id" placeholder="appid" value="{$Request.param.app_id}">
         </div>
                 <div class="form-group">
-        <input type="text" id="des" name="ad_name" value="" placeholder="广告主名称关键词" class="form-control">
+        <input type="text" id="des" name="ad_name" value="{$Request.param.ad_name}" placeholder="广告主名称关键词" class="form-control">
         </div>
         
         <div class="form-group">
-        <input type="text" id="appname" name="app_name" value="" placeholder="应用名称关键词" class="form-control">
+        <input type="text" id="appname" name="app_name" value="{$Request.param.app_name}" placeholder="应用名称关键词" class="form-control">
         </div>
                 
         <script>
@@ -255,26 +257,32 @@
 						<th>app</th>
 						<th>安装数</th>
 						<th>渠道激活</th>
-						<th>渠道激活率</th>
-												<!-- <th>影藏激活</th>
+                        <th>渠道激活率</th>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
+												 <th>影藏激活</th>
 						<th>总计激活</th>
-						<th>激活率</th> -->
+                        <th>激活率</th>
+                        {/if}
 											</tr>
 				</thead>
 				<tbody>
                         {volist name="loglist" id="vo"}
 				    					<tr class="">
-					    						<td>
-						全部						</td>
+					    						<td>{$Request.param.ad_name??"全部"}</td>
 												<td>{$vo.data_time}</td>
 						<td>
-						全部 </td>
+                            {$Request.param.app_id??"全部"} </td>
 						<td>
-						全部						</td>
-						
+                            {$Request.param.app_name??"全部"}						</td>
+
 						<td>{$vo.idn}</td>
+                        <td>{$vo.asn - $vo.asn_y}</td>
+                        <td><?php echo round((($vo['asn'] - $vo['asn_y'])*100)/$vo['idn'],2);?>%</td>
+                        {if \json_decode(session('userinfo'),true)['user_id'] == 1 }
+                        <td>{$vo.asn_y}</td>
 						<td>{$vo.asn}</td>
-						<td><?php echo round(($vo['asn']*100)/$vo['idn'],2);?>%</td>
+                        <td><?php echo round(($vo['asn']*100)/$vo['idn'],2);?>%</td>
+                        {/if}
                         {/volist}
 											</tr>
 
@@ -286,12 +294,48 @@
 				<div class="col-lg-6">
 					<div class="dataTables_paginate paging_bootstrap pagination">
                         <ul>
-                            <li class=""><a href="total_day?page=1">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="total_day?page={$pageinfo.page_index-1<1?'javascript:;':$pageinfo.page_index-1}">上一页</a></li>&nbsp;
-                            {for start="1" end="$pageinfo.page_num+1"}
-                                <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'total_day?page='.$i}">{$i}</a></li>&nbsp;
-                            {/for}   
+                            <li class=""><a href="total_day?page=1&<?php echo getUrlString($_GET);?>">首页</a></li>&nbsp;&nbsp;<li class="{$pageinfo.page_index-1<1?'disabled':'pre'}"><a href="total_day?page={$pageinfo.page_index-1<1?'javascript:;':($pageinfo.page_index-1)}&<?php echo getUrlString($_GET);?>">上一页</a></li>&nbsp;
+                            {if $pageinfo.page_num+1 <10 }
+                            {for start="1" end="$pageinfo.page_num+1"}             
+                                <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'total_day?page='.$i}&<?php echo getUrlString($_GET);?>">{$i}</a></li>&nbsp;
+                            {/for}
+                            {else /}
+                            <li class=" {$pageinfo.page_index==1?'disabled':''} "><a href="{$pageinfo.page_index==1?'javascript:;':'total_day?page=1'}&<?php echo getUrlString($_GET);?>">1</a></li>&nbsp;
+                            <li class=" {$pageinfo.page_index==2?'disabled':''} "><a href="{$pageinfo.page_index==2?'javascript:;':'total_day?page=2'}&<?php echo getUrlString($_GET);?>">2</a></li>&nbsp;
+                            {if $pageinfo.page_index >3 && $pageinfo.page_index <$pageinfo.page_num-2} 
+                            {if $pageinfo.page_index >4}
+                            <li>...</li>
+                            {/if}
+                                {for start="$pageinfo.page_index-1" end="$pageinfo.page_index+2"}    
+                                    <li class=" {$pageinfo.page_index==$i?'disabled':''} "><a href="{$pageinfo.page_index==$i?'javascript:;':'total_day?page='.$i}&<?php echo getUrlString($_GET);?>">{$i}</a></li>&nbsp;                       
+                                {/for}
+                                {if $pageinfo.page_index <$pageinfo.page_num-3}
+                                <li>...</li>
+                                {/if}
+                            {else /}
+                            {if $pageinfo.page_index==2 || $pageinfo.page_index==3}
+                            <li class=" {$pageinfo.page_index==3?'disabled':''} "><a href="{$pageinfo.page_index==3?'javascript:;':'total_day?page=3'}&<?php echo getUrlString($_GET);?>">3</a></li>&nbsp;
+                                {/if}
+                                {if $pageinfo.page_index==3}
+                            <li class=" {$pageinfo.page_index==4?'disabled':''} "><a href="{$pageinfo.page_index==4?'javascript:;':'total_day?page=4'}&<?php echo getUrlString($_GET);?>">4</a></li>&nbsp;
+                                {/if}
+                            <li>...</li>
+                            <li class=" {$pageinfo.page_index==\floor($pageinfo.page_num/2)?'disabled':''} "><a href="{$pageinfo.page_index==\floor($pageinfo.page_num/2)?'javascript:;':'total_day?page='.\floor($pageinfo.page_num/2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num/2|floor}</a></li>&nbsp;
+                            <li class=" {$pageinfo.page_index==\ceil($pageinfo.page_num/2)?'disabled':''} "><a href="{$pageinfo.page_index==\ceil($pageinfo.page_num/2)?'javascript:;':'total_day?page='.\ceil($pageinfo.page_num/2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num/2|ceil}</a></li>&nbsp;
+                            <li>...</li>
+                            {if $pageinfo.page_index==($pageinfo.page_num-2)}
+                            <li class=" {$pageinfo.page_index==($pageinfo.page_num-3)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-3)?'javascript:;':'total_day?page='.($pageinfo.page_num-3)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-3}</a></li>&nbsp;
+                                {/if}
+                            {if $pageinfo.page_index==($pageinfo.page_num-1) || $pageinfo.page_index==($pageinfo.page_num-2)}
+                            <li class=" {$pageinfo.page_index==($pageinfo.page_num-2)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-2)?'javascript:;':'total_day?page='.($pageinfo.page_num-2)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-2}</a></li>&nbsp;
+                                {/if}
+                            {/if}
+                            <li class=" {$pageinfo.page_index==($pageinfo.page_num-1)?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num-1)?'javascript:;':'total_day?page='.($pageinfo.page_num-1)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num-1}</a></li>&nbsp;
+                            <li class=" {$pageinfo.page_index==$pageinfo.page_num?'disabled':''} "><a href="{$pageinfo.page_index==($pageinfo.page_num)?'javascript:;':'total_day?page='.($pageinfo.page_num)}&<?php echo getUrlString($_GET);?>">{$pageinfo.page_num}</a></li>&nbsp;
+                            {/if}
                             
-                            &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="total_day?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}">下一页</a></li>&nbsp;<li><a href="total_day?page={$pageinfo.page_num}">尾页</a></li>						</ul>
+                            
+                            &nbsp;<li class="{$pageinfo.page_index+1>$pageinfo.page_num?'disabled':'next'} "><a href="total_day?page={$pageinfo.page_index+1>$pageinfo.page_num?'javascript:;':$pageinfo.page_index+1}&<?php echo getUrlString($_GET);?>">下一页</a></li>&nbsp;<li><a href="total_day?page={$pageinfo.page_num}&<?php echo getUrlString($_GET);?>">尾页</a></li>						</ul>
                     </div>
 				</div>
 			</div>
@@ -309,15 +353,15 @@
 
     <!-- js placed at the end of the document so the pages load faster -->
     
-    {load href="/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
-    {load href="/static/admin/js/jquery.scrollTo.min.js" /}
-    {load href="/static/admin/js/jquery.nicescroll.js" /}
-    {load href="/static/admin/js/jquery.sparkline.js" /}
-    {load href="/static/admin/js/jquery.easy-pie-chart.js" /}
-    {load href="/static/admin/js/owl.carousel.js" /}
-    {load href="/static/admin/js/jquery.customSelect.min.js" /}
-    {load href="/static/admin/js/respond.min.js" /}
-	{load href="/static/admin/js/common-scripts.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.dcjqaccordion.2.7.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.scrollTo.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.nicescroll.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.sparkline.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.easy-pie-chart.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/owl.carousel.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.customSelect.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/respond.min.js" /}
+	{load href="<?php echo ADMIN_HOST;?>/static/admin/js/common-scripts.js" /}
 	<div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; cursor: default; position: fixed; top: 0px; left: 207px; height: 754px; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 3px; height: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; top: 751px; left: 0px; position: fixed; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 3px; width: 0px; border-radius: 10px; left: 0px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 6px; height: 354px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 6px; width: 1600px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000" class="nicescroll-rails" style="width: 3px; z-index: 1; cursor: default; position: fixed; top: 0px; left: 207px; height: 754px; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 3px; height: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 3px; z-index: 1; top: 751px; left: 0px; position: fixed; cursor: default; display: none; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 3px; width: 0px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001" class="nicescroll-rails" style="width: 6px; z-index: 1000; cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; float: right; width: 6px; height: 354px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails" style="height: 6px; z-index: 1000; position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0; background: rgb(64, 64, 64);"><div style="position: relative; top: 0px; height: 6px; width: 1600px; border-radius: 10px; background-color: rgb(232, 64, 63); background-clip: padding-box;"></div></div>
     <script>
     $(document).ready(function() {

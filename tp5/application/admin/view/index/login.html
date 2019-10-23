@@ -11,13 +11,13 @@
     <title>创景数据平台</title>
 
     <!-- Bootstrap core CSS -->
-    {load href="/static/admin/css/bootstrap.min.css" /}
-    {load href="/static/admin/css/bootstrap-reset.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap.min.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/bootstrap-reset.css" /}
     <!--external css-->
-    {load href="/static/admin/css/font-awesome.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/font-awesome.css" /}
     <!-- Custom styles for this template -->
-    {load href="/static/admin/css/style.css" /}
-    {load href="/static/admin/css/style-responsive.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style.css" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/css/style-responsive.css" /}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -52,19 +52,19 @@
 
     </div>
     <!-- js placed at the end of the document so the pages load faster -->
-    {load href="/static/admin/js/jquery.js" /}
-    {load href="/static/admin/js/bootstrap.min.js" /}
-    {load href="/static/admin/js/md5.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/jquery.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/bootstrap.min.js" /}
+    {load href="<?php echo ADMIN_HOST;?>/static/admin/js/md5.js" /}
     <script type="text/javascript">
 function login(){
     
 	var username = $("#username").val();
 	var pwd = $("#pwd").val();
-	var url = '/index/login';
+	var url = '<?php echo ADMIN_HOST;?>/index/login';
 	$.post(url,{'username':username,'pwd':hex_md5(pwd)},function(rs){
         console.log(rs);
 		if(rs.error==0){
-			window.location.href = "/index/total_day";
+			window.location.href = "<?php echo ADMIN_HOST;?>/index/total_day";
 			return false;
 		}else{
             alert(rs.message);

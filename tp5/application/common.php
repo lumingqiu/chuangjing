@@ -10,3 +10,13 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+function getUrlString($array_query)
+{
+    $tmp = array();
+    foreach($array_query as $k=>$param)
+    {
+        $tmp[] = $k.'='.$param;
+    }
+    $params = implode('&',$tmp);
+    return $params;
+}
